@@ -19,17 +19,17 @@ export class LineChartComponent {
 
   constructor(
     private messageService: MessageService,
-    private coronaService: CoronaService,
+    private coronaService: CoronaService
   ) {
     this.cardChartAvanco();
-    this.cardCharteEstados();
+    this.cardChartEstados();
   }
 
-  private cardCharteEstados(): void {
+  private cardChartEstados(): void {
     this.coronaService.loadCSV()[3].subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
-          this.setChartAvanco(parsedData.data);
+          this.setChartEstados(parsedData.data);
         }
       });
     });
@@ -45,28 +45,21 @@ export class LineChartComponent {
     });
   }
 
-  private setChartEstado(ApiDados) {
-    let dados = ApiDados.filter(function(item) {
-      return item[2] === "TOTAL";
-    });
-
+  private setChartEstados(ApiDados) {
+    //country,state,totalCases,totalCasesMS,notConfirmedByMS,deaths,URL
+    let dados = ApiDados.slice(2, ApiDados.length-1);
     const labels = dados.map(function(d) {
-      return formatDate(d[0], "dd/MM/yyyy", "pt");
+      return d[1];
     });
 
-    const serie1Label = "Novos Casos";
+    const serie1Label = "Casos confirmados";
     const serie1Data = dados.map(function(d) {
-      return d[4];
+      return d[3];
     });
 
     const serie2Label = "Mortes";
     const serie2Data = dados.map(function(d) {
       return d[5];
-    });
-
-    const serie3Label = "Total de Casos";
-    const serie3Data = dados.map(function(d) {
-      return d[6];
     });
 
     let datasets = {
@@ -75,28 +68,21 @@ export class LineChartComponent {
         {
           label: serie1Label,
           data: serie1Data,
-          fill: false,
+          backgroundColor: "#2196F3",
           borderColor: "#2196F3"
         },
         {
           label: serie2Label,
           data: serie2Data,
-          fill: false,
-          borderColor: "#d32f2f"
+          backgroundColor: "#9CCC65",
+          borderColor: "#7CB342"
         },
-        {
-          label: serie3Label,
-          data: serie3Data,
-          fill: false,
-          borderColor: "#9d46ff"
-        }
       ]
     };
-    this.chartAvanco.push(JSON.stringify(datasets));
-    this.chartAvanco = JSON.parse(this.chartAvanco);
+    this.chartEstados.push(JSON.stringify(datasets));
+    this.chartEstados = JSON.parse(this.chartEstados);
   }
 
-  
   private setChartAvanco(ApiDados) {
     let dados = ApiDados.filter(function(item) {
       return item[2] === "TOTAL";

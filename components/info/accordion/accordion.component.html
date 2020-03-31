@@ -1,0 +1,22 @@
+<!-- <mat-card>
+	<mat-card-title>Situação diária</mat-card-title>
+	<mat-card-content>
+		<div class="mat-elevation-z8">
+			<p-accordion class="ui-fluid" [multiple]="false">
+				<p-accordionTab *ngFor="let item of dados">
+          <p-header> {{item.header}} </p-header>
+					<div> {{ item.content}}  </div>
+				</p-accordionTab>
+			</p-accordion>
+		</div>
+	</mat-card-content>
+</mat-card> -->
+
+<mat-accordion displayMode="" multi class="mat-table">
+	<mat-expansion-panel *ngFor="let item of dados">
+		<mat-expansion-panel-header class="mat-row">
+			<span class="mat-cell"><strong>{{item.header}}</strong></span>
+    </mat-expansion-panel-header>
+		<div align="justify">{{item.content}} </div>
+	</mat-expansion-panel>
+</mat-accordion>
