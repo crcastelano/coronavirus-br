@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, MouseEvent} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { TdMediaService } from '@covalent/core/media';
-import { APP_ROUTES } from './app.module';
-
+import { APP_ROUTES, MAPSTYLES, SELECTEDSTYLE } from './app.module';
+import { MapInfoWindow, MapMarker, GoogleMap } from "@angular/google-maps";
+import * as Mapa from "../models/mapa";
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -12,21 +13,12 @@ import { APP_ROUTES } from './app.module';
 export class AppComponent  {
   name = 'Corona vírus no Brasil';
   routes = APP_ROUTES;
+  mapStyles = MAPSTYLES;
+  public selectedStyle = SELECTEDSTYLE; //Mapa.MAPSTYLEBLACK;  
 
-  routes2: Object[] = [{
-      icon: 'map',
-      route: 'google-maps',
-      title: 'Mapa',
-    }, {
-      icon: 'dashboard',
-      route: '.',
-      title: 'Gráficos',
-    }, {
-      icon: 'table_chart',
-      route: '.',
-      title: 'Consultas',
-    },
-  ];
+  changeStyle(data) {
+    SELECTEDSTYLE = data;
+  }
 
   constructor(public media: TdMediaService,
               private _iconRegistry: MatIconRegistry,
@@ -44,6 +36,7 @@ export class AppComponent  {
   get activeTheme(): string {
     return localStorage.getItem('theme');
   }
+
   theme(theme: string): void {
     localStorage.setItem('theme', theme);
   }

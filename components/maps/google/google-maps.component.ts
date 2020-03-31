@@ -6,7 +6,7 @@ import { MaterialModule } from "../../../material/material.module";
 import * as Papa from "papaparse";
 import * as Mapa from "../../../models/mapa";
 import { CoronaService } from "../../../services/corona.service";
-
+import { MAPSTYLES, SELECTEDSTYLE } from '../../../app/app.module';
 import localeBr from "@angular/common/locales/br";
 import { registerLocaleData } from "@angular/common";
 
@@ -34,11 +34,13 @@ export class GoogleMapsComponent implements AfterViewInit {
     { id: Mapa.MAPSTYLEANIGHT, name: "Night" }
   ];
 
-  public selectedStyle = Mapa.MAPSTYLEBLACK;
+  public selectedStyle; // = SELECTEDSTYLE;
 
   apiData: any[] = [];
 
-  constructor(private coronaService: CoronaService) {}
+  constructor(private coronaService: CoronaService) {
+    this.selectedStyle = SELECTEDSTYLE;
+  }
 
   ngOnInit() {}
 

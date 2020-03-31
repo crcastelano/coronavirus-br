@@ -21,7 +21,18 @@ export class LineChartComponent {
     private messageService: MessageService,
     private coronaService: CoronaService,
   ) {
-    this.cardChartAvanco();    
+    this.cardChartAvanco();
+    this.cardCharteEstados();
+  }
+
+  private cardCharteEstados(): void {
+    this.coronaService.loadCSV()[3].subscribe((data: any[]) => {
+      Papa.parse(data, {
+        complete: parsedData => {
+          this.setChartAvanco(parsedData.data);
+        }
+      });
+    });
   }
 
   private cardChartAvanco(): void {
@@ -34,6 +45,58 @@ export class LineChartComponent {
     });
   }
 
+  private setChartEstado(ApiDados) {
+    let dados = ApiDados.filter(function(item) {
+      return item[2] === "TOTAL";
+    });
+
+    const labels = dados.map(function(d) {
+      return formatDate(d[0], "dd/MM/yyyy", "pt");
+    });
+
+    const serie1Label = "Novos Casos";
+    const serie1Data = dados.map(function(d) {
+      return d[4];
+    });
+
+    const serie2Label = "Mortes";
+    const serie2Data = dados.map(function(d) {
+      return d[5];
+    });
+
+    const serie3Label = "Total de Casos";
+    const serie3Data = dados.map(function(d) {
+      return d[6];
+    });
+
+    let datasets = {
+      labels: labels,
+      datasets: [
+        {
+          label: serie1Label,
+          data: serie1Data,
+          fill: false,
+          borderColor: "#2196F3"
+        },
+        {
+          label: serie2Label,
+          data: serie2Data,
+          fill: false,
+          borderColor: "#d32f2f"
+        },
+        {
+          label: serie3Label,
+          data: serie3Data,
+          fill: false,
+          borderColor: "#9d46ff"
+        }
+      ]
+    };
+    this.chartAvanco.push(JSON.stringify(datasets));
+    this.chartAvanco = JSON.parse(this.chartAvanco);
+  }
+
+  
   private setChartAvanco(ApiDados) {
     let dados = ApiDados.filter(function(item) {
       return item[2] === "TOTAL";
