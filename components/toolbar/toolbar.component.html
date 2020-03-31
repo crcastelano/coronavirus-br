@@ -1,0 +1,64 @@
+<!-- <div class="placar">
+	<mat-icon material-icons>update</mat-icon>
+	<a> Atualização</a>
+	<h1>{{total.date | date:'dd/MM/yyyy'}}</h1>
+</div>
+
+<div class="placar">
+	<mat-icon material-icons>notifications_active</mat-icon>
+	<a> Total de Casos</a>
+	<h1>{{total.totalCases | number:'':'pt-BR'}}</h1>
+</div>
+
+<div class="placar">
+	<mat-icon material-icons>group_add</mat-icon>
+		<a> Confirmados pelo MS</a>
+		<h1>{{total.totalCasesMS | number:'':'pt-FR'}}</h1>
+</div>
+
+<div class="placar">
+	<mat-icon material-icons>help_outline</mat-icon>
+		<a> Não Confirmados</a>
+		<h1>{{total.notConfirmedByMS | number:'':'pt-FR'}}</h1>
+</div>
+
+<div class="placar">
+	<mat-icon material-icons>local_hospital</mat-icon>
+		<a> Total de Mortes</a>
+		<h1>{{total.deaths | number:'':'pt-FR'}}</h1>
+</div> -->
+
+<mat-card>
+	<mat-card-content>
+    <div layout="row" layout-align="space-around">
+		<div class="placar">
+			<mat-icon material-icons>update</mat-icon>
+			<h6>{{total.date | date:'dd/MM/yyyy'}}</h6>
+			<a>Última Atualização</a>
+		</div>
+
+		<div class="placar">
+			<mat-icon material-icons>notifications_active</mat-icon>
+			<h6>{{total.totalCases | number:'':'pt-BR'}}</h6>
+			<a>Total de Casos</a>
+		</div>
+
+		<div class="placar">
+			<mat-icon material-icons>group_add</mat-icon>
+			<h6>{{total.totalCasesMS | number:'':'pt-FR'}}</h6>
+			<a>Confirmados pelo MS</a>
+		</div>
+
+		<div class="placar">
+			<mat-icon material-icons>help_outline</mat-icon>
+			<h6>{{total.notConfirmedByMS | number:'':'pt-FR'}}</h6>
+			<a> Não Confirmados</a>
+		</div>
+		<div class="placar">
+			<mat-icon material-icons>local_hospital</mat-icon>
+			<h6>{{total.deaths | number:'':'pt-FR'}}</h6>
+			<a> Total de Mortes</a>
+		</div>
+    </div>
+	</mat-card-content>
+</mat-card>

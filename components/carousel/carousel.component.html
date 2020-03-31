@@ -1,0 +1,14 @@
+<mat-card  style="text-align: center;">
+	<mat-card-title>Prevenção</mat-card-title>
+  <mat-card-content>
+      <ngb-carousel *ngIf="event_list">
+        <ng-template ngbSlide *ngFor="let event of past_events">
+          <img [src]="event.img" [title]="teste">
+          <!-- <div class="carousel-caption"> -->
+            <!-- <p style="color:blue; font-size: 150%" [innerText]="event.eventDescription"></p> -->
+          <!-- </div> -->
+            <!-- <h5>{{event.eventDescription}}</h5> -->
+        </ng-template>
+      </ngb-carousel>
+  </mat-card-content>
+</mat-card>

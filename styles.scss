@@ -1,0 +1,27 @@
+/* Add application styles & imports to this file! */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '@angular/material/prebuilt-themes/purple-green.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+/**
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */

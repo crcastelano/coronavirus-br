@@ -1,0 +1,71 @@
+<td-layout [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+	[sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '240px' : '100%'" [class]="activeTheme">
+	<td-navigation-drawer flex [sidenavTitle]="name" name="Firstname Lastname" email="firstname.lastname@company.com">
+		<mat-nav-list> 
+			<a *ngFor="let item of routes" mat-list-item
+       [routerLink]="item.route"
+       (click)="sidenav.toggle()">
+				<mat-icon>{{item.icon}}</mat-icon>{{item.title}}
+			</a>
+		</mat-nav-list>
+		<div td-navigation-drawer-menu>
+			<mat-nav-list>
+				<a *ngFor="let item of usermenu" mat-list-item>
+					<mat-icon>{{item.icon}}</mat-icon>{{item.title}}
+				</a>
+			</mat-nav-list>
+		</div>
+	</td-navigation-drawer>
+	<td-layout-nav [toolbarTitle]="name" navigationRoute="/">
+		<button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+		<div td-toolbar-content layout="row" layout-align="end" flex>
+					<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
+              <mat-icon>brightness_high</mat-icon>
+              <!-- <span>Modo Claro</span> -->
+        </button>
+					<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
+              <mat-icon>brightness_low</mat-icon>
+              <!-- <span>Modo Escuro</span> -->
+        </button>
+		</div>
+
+		<!-- números do Covid -->
+		<crc-toolbar></crc-toolbar>
+
+		<div layout-gt-sm="row" tdMediaToggle="gt-sm" [mediaClasses]="['push-sm']">
+			<div flex-gt-sm="50">
+				<!-- <mat-card>
+					<mat-card-content> -->
+						<crc-google-maps></crc-google-maps>
+					<!-- </mat-card-content>
+				</mat-card> -->
+			</div>
+			<div flex-gt-sm="50">
+				<!-- <div layout-gt-sm="row" tdMediaToggle="gt-sm" [mediaClasses]="['push-sm']"> -->
+				<!-- <mat-card>
+					<mat-card-content> -->
+						<crc-line-chart></crc-line-chart>
+					<!-- </mat-card-content>
+				</mat-card> -->
+				<!-- <mat-card>
+					<mat-card-content> -->
+						<crc-mat-table></crc-mat-table>
+					<!-- </mat-card-content>
+				</mat-card> -->
+				<!-- </div> -->
+				<!-- <mat-card>
+					<mat-card-content> -->
+						<crc-carousel></crc-carousel>
+					<!-- </mat-card-content>
+				</mat-card> -->
+			</div>
+		</div>
+		<td-layout-footer>
+			<div layout="row" layout-align="start center">
+				<span class="mat-caption">Projeto opensource sobre o avanço do COVID-19 no Brasil</span>
+			</div>
+		</td-layout-footer>
+	</td-layout-nav>
+</td-layout>

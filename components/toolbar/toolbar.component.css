@@ -1,0 +1,57 @@
+.placar {
+  font-family: 'Titillium Web', sans-serif;
+  /* color: orange; */
+  text-align: center;
+  font-size: small;
+  padding: 0;
+  /* margin-right:20px!important; */
+  /* display: inline-block; */
+  /* vertical-align: center; */
+}
+
+h6 {
+  font-weight: bold;
+}
+
+/*
+.exibir_dados{
+  font-family: 'Titillium Web', sans-serif;
+  color: blue;
+  text-align: left;
+  font-size: 3
+}
+
+.example-header-image {
+  background-image: url('https://conteudo.imguol.com.br/c/noticias/e4/2020/01/30/30jan2020---ilustracao-do-coronavirus-em-3d-e-mapa-do-brasil-o-ministerio-da-saude-informou-ate-quarta-feira-29-a-existencia-de-nove-casos-suspeitos-de-infeccao-pelo-coronavirus-no-brasil-nenhum-1580394236926_v2_1096x1080.jpg');
+  background-size: cover;
+  width: 150;
+  height: 100px;
+  align-content: center;
+  align-items: center;
+}
+
+.mat-card-topo {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height: 100px;
+}
+
+.bell-icon{
+  margin-right:20px!important;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.logout{
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  vertical-align: bottom;
+} */
+
+/* .mat-menu-item:hover{
+  color: #aa3c9f;
+}
+.mat-menu-item:hover .mat-icon{
+  color: #aa3c9f;
+} */

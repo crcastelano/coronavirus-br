@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.mat-header-cell {
+  min-height:25px;
+  /* font-family:Verdana,sans-serif; */
+  font-weight:bold;
+  font-size:13px;
+  /* color: #FF6D00; #1a084c; */
+  margin-bottom:5px;
+   top: 0;
+    position: sticky;
+    z-index: 1;
+    background-color: inherit;
+}
