@@ -22,3 +22,9 @@ agm-map {
 .infowindow {
   color:black;
 }
+
+.mat-card {
+  /* margin-top: auto; */
+  margin: auto;
+  /* margin-top: -10px; */
+}

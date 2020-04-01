@@ -68,6 +68,12 @@ export const APP_ROUTES =  [
     component: InfoComponent,
     label: 'Informações'
   },
+  { 
+    icon: 'info',
+    path: 'sobre', 
+    component: InfoComponent,
+    label: 'Sobre'
+  },
 ];
 
 export const MAPSTYLES = [

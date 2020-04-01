@@ -231,7 +231,6 @@ private selectedFile: File;
           for (let index = 1; index < csvToRowArray.length - 1; index++) {
             let row = csvToRowArray[index].split(",");
             let corona: CoronaCSV;
-            console.log("corona");
 
             // corona.uid = ESTADOS.find(o => o.uid === estado.uid);
             corona.state = row[index][1];

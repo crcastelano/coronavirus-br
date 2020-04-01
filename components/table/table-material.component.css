@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  /* margin-bottom:0px; */
 }
 
 .mat-form-field {
@@ -18,8 +19,16 @@ td, th {
   font-size:13px;
   /* color: #FF6D00; #1a084c; */
   margin-bottom:5px;
-   top: 0;
-    position: sticky;
-    z-index: 1;
-    background-color: inherit;
+  top: 0;
+  position: sticky;
+  z-index: 1;
+  background-color: inherit;
+}
+
+.mat-card {
+  /* margin-top: auto; */
+  margin: auto;
+  margin-bottom:5px;
+  /* margin-top: -5px; */
+  /* margin-left: -5px; */
 }

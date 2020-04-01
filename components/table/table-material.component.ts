@@ -15,20 +15,19 @@ import * as Papa from "papaparse";
 export class TableMaterialComponent implements OnInit {
   colunasDiarios: string[] = [
     "date",
-    "state",
     "city",
     "newCases",
     "totalCases"
   ];
 
   colunasTotal: string[] = [
-    "city",
-    "state",
-    "deaths",
-    "totalCases"
+    "Tcity",
+    "Tdeaths",
+    "TtotalCases"
   ];
 
-  dataSource: MatTableDataSource<any>;
+  dataSourceDiario: MatTableDataSource<any>;
+  dataSourceTotal: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -38,11 +37,12 @@ export class TableMaterialComponent implements OnInit {
     private httpClient: HttpClient
   ) {
     this.cardTabelaDiaria();
+    this.cardTabelaTotal();
   }
 
   ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
+    // this.dataSourceDiario.paginator = this.paginator;
+    // this.dataSourceDiario.sort = this.sort;
   }
 
   private cardTabelaDiaria() {
@@ -50,9 +50,9 @@ export class TableMaterialComponent implements OnInit {
       Papa.parse(data, {
         complete: parsedData => {
           const dataTable = this.setTabelaDiaria(parsedData.data.reverse());
-          this.dataSource = new MatTableDataSource(dataTable);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+          this.dataSourceDiario = new MatTableDataSource(dataTable);
+          this.dataSourceDiario.paginator = this.paginator;
+          this.dataSourceDiario.sort = this.sort;
         }
       });
     });
@@ -77,35 +77,43 @@ export class TableMaterialComponent implements OnInit {
     this.coronaService.loadCSV()[1].subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
-          const dataTable = this.setTabelaTotal(parsedData);
-          this.dataSource = new MatTableDataSource(dataTable);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+          const dataTable = this.setTabelaTotal(parsedData.data);
+          this.dataSourceTotal = new MatTableDataSource(dataTable);
+          this.dataSourceTotal.paginator = this.paginator;
+          this.dataSourceTotal.sort = this.sort;
         }
       });
     });
   }
 
   private setTabelaTotal(dados) {
-    let source: any[] = [];
+    const source: any[] = [];
     for (var key = 1; key < dados.length-1; key++) {
       let data: any = {
-        city: dados[key][2],
-        state: dados[key][1],
-        deaths: dados[key][4],
-        totalCases: dados[key][5]
+        Tcity: dados[key][2],
+        Tdeaths: dados[key][4],
+        TtotalCases: dados[key][5]
       };
       source.push(data);
     }
     return source;
   }
 
-  applyFilter(event: Event) {
+  applyFilterDiario(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceDiario.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.dataSourceDiario.paginator) {
+      this.dataSourceDiario.paginator.firstPage();
+    }
+  }
+
+  applyFilterTotal(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceTotal.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourceTotal.paginator) {
+      this.dataSourceTotal.paginator.firstPage();
     }
   }
 }
