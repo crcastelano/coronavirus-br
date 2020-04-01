@@ -33,12 +33,12 @@ export class AccordionComponent {
     {
       header: "Estou com sintomas de gripe. O que devo fazer?",
       content: "Se você está com sintomas de gripe, fique em casa por 14 dias e siga as orientações do Ministério da Saúde para o isolamento domiciliar. Só procure um hospital de referência se estiver com falta de ar.",
-      image: "",
+      image: "sintomas_gripe.png",
     },
     {
       header: "Há um caso de coronavírus confirmado na minha casa. Como fazer o isolamento domiciliar?", 
       content: "Pessoas com diagnóstico confirmado de coronavírus precisam ficar em isolamento domiciliar. Veja como proteger sua família:",
-      image: "comparativo.png",
+      image: "isolamento.png",
     },
     {
       header: "Quem corre mais risco ?",
@@ -48,12 +48,12 @@ export class AccordionComponent {
     {
       header: "Quando usar máscara?",
       content: "Use máscara se estiver tossindo ou espirrando para evitar transmitir vírus para outras pessoas. Para pessoas saudáveis, use máscara somente se estiver cuidando de uma pessoa com doenças respiratórias. As máscaras são eficazes somente quando usadas em combinação com a limpeza frequente das mãos com água e sabão ou higienizadas com álcool em gel 70%. Após usar a máscara, descarte-a em local adequado e lave as mãos. Em todas as situações recomendadas, utilize a máscara do tipo cirúrgico. A máscara N95 é  de uso dos profissionais de saúde e é fundamental para sua proteção. Há risco de faltar, caso a população compre também.",
-      image: "mascara.png",
+      image: "",
     },
     {
       header: "Já existe vacina contra o coronavírus (COVID-19)?",
       content: "Não há vacina disponível até o momento, mas estudos já estão em andamento.",
-      image: "vacina.png",
+      image: "",
     },
     {
       header: "Já existe tratamento contra o coronavírus (COVID-19)?",
@@ -68,17 +68,17 @@ export class AccordionComponent {
     {
       header: "Há riscos maiores para grávidas ?",
       content: "Ainda não existem dados específicos, mas elas passam por mudanças imunológicas que podem deixá-las mais vulneráveis.",
-      image: "gravida.png",
+      image: "",
     },
     {
       header: "Vitaminas D e C ou água com limão previnem o coronavírus (COVID-19)?",
       content: "Nenhuma delas. Não existe vitamina, terapia alternativa ou remédio licenciado capaz de evitar o contágio ou tratar a doença. ",
-      image: "vitamina.jpg",
+      image: "",
     },
     {
       header: "Animais de estimação transmitem coronavírus (COVID-19)?",
       content: "Ainda não existem evidências nesse sentido.",
-      image: "animais.png",
+      image: "",
     },
   ];
 }

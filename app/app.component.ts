@@ -11,7 +11,7 @@ import * as Mapa from "../models/mapa";
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Corona vírus no Brasil';
+  name = 'Corona vírus (COVID-19) no Brasil';
   routes = APP_ROUTES;
   mapStyles = MAPSTYLES;
   public selectedStyle = SELECTEDSTYLE; //Mapa.MAPSTYLEBLACK;  
@@ -24,13 +24,11 @@ export class AppComponent  {
               private _iconRegistry: MatIconRegistry,
               private _domSanitizer: DomSanitizer) {
                 
-              // this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-ux',
-              // this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg'));
-              // this._iconRegistry.addSvgIconInNamespace('assets', 'covalent',
-              // this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
-              // this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
-              // this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'brasil',
+    this._domSanitizer.bypassSecurityTrustResourceUrl('https://image.flaticon.com/icons/svg/457/457992.svg'));
 
+    this._iconRegistry.addSvgIconInNamespace('assets', 'covid',
+    this._domSanitizer.bypassSecurityTrustResourceUrl('https://image.flaticon.com/icons/svg/2585/2585189.svg'));
   }
 
   get activeTheme(): string {

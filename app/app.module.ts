@@ -29,6 +29,8 @@ import { AccordionComponent } from '../components/info/accordion/accordion.compo
 
 import { InfoComponent } from '../components/info/info.component'
 
+import { AboutComponent } from '../components/about/about.component'
+
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import tableMaterialComponentCss from '../components/table/table-material.component.css';
@@ -71,7 +73,7 @@ export const APP_ROUTES =  [
   { 
     icon: 'info',
     path: 'sobre', 
-    component: InfoComponent,
+    component: AboutComponent,
     label: 'Sobre'
   },
 ];
@@ -106,7 +108,7 @@ export var SELECTEDSTYLE = Mapa.MAPSTYLEBLACK;
     ChartModule,
     NgbModule
     ],
-  declarations: [ AppComponent, GoogleMapsComponent, ToolBarComponent, LineChartComponent, TableMaterialComponent, CarouselComponent, AccordionComponent, InfoComponent],
+  declarations: [ AppComponent, GoogleMapsComponent, ToolBarComponent, LineChartComponent, TableMaterialComponent, CarouselComponent, AccordionComponent, InfoComponent, AboutComponent],
   bootstrap:    [ AppComponent ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
 })

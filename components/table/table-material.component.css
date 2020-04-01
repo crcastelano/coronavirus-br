@@ -26,9 +26,6 @@ td, th {
 }
 
 .mat-card {
-  /* margin-top: auto; */
   margin: auto;
   margin-bottom:5px;
-  /* margin-top: -5px; */
-  /* margin-left: -5px; */
 }

@@ -1,9 +1,8 @@
 <td-layout [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
 	[sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '240px' : '100%'" [class]="activeTheme">
-	<td-navigation-drawer #sidenav flex [sidenavTitle]="name" name="Firstname Lastname" email="firstname.lastname@company.com">
+	<td-navigation-drawer logo="assets:brasil" #sidenav flex [sidenavTitle]="name">
 		<mat-nav-list>
-
- 		 <a *ngFor="let item of routes" mat-list-item routerLink="{{item.path}}" (click)="sidenav.toggle()">
+			<a *ngFor="let item of routes" mat-list-item routerLink="{{item.path}}" (click)="sidenav.toggle()">
 				<mat-icon>{{item.icon}}</mat-icon>{{item.label}}
 			</a>
 		</mat-nav-list>
@@ -17,35 +16,36 @@
 	</td-navigation-drawer>
 	<td-layout-nav [toolbarTitle]="name" navigationRoute="/">
 		<button mat-icon-button td-menu-button tdLayoutToggle>
-      <mat-icon>menu</mat-icon>
+      <mat-icon svgIcon="assets:covid"></mat-icon>
     </button>
 		<div td-toolbar-content layout="row" layout-align="end" flex>
 
-        <button mat-icon-button
+			<button mat-icon-button
                 matTooltip="Card settings"
                 [mat-menu-trigger-for]="settings1">
           <mat-icon>more_vert</mat-icon>
         </button>
 
-        <mat-menu xPosition="before" #settings1="matMenu">
-          <mat-card>
-            <mat-card-subtitle>Escolha o estilo do mapa</mat-card-subtitle>
-            <mat-card-content>
-              <mat-select [(ngModel)]="selectedStyle" name="style" (selectionChange)="changeStyle($event.value)">
-                <mat-option *ngFor="let style of mapStyles" [value]="style.id">
-                  {{ style.name}}
-                </mat-option>
-              </mat-select>
-            </mat-card-content>
-          </mat-card>
-        </mat-menu>
+			<mat-menu xPosition="before" #settings1="matMenu">
+				<mat-card>
+					<mat-card-subtitle>Escolha o estilo do mapa</mat-card-subtitle>
+					<mat-card-content>
+						<mat-select [(ngModel)]="selectedStyle" name="style"
+							(selectionChange)="changeStyle($event.value)">
+							<mat-option *ngFor="let style of mapStyles" [value]="style.id">
+								{{ style.name}}
+							</mat-option>
+						</mat-select>
+					</mat-card-content>
+				</mat-card>
+			</mat-menu>
 
 
-					<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
+			<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
               <mat-icon>brightness_high</mat-icon>
               <!-- <span>Modo Claro</span> -->
         </button>
-					<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
+			<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
               <mat-icon>brightness_low</mat-icon>
               <!-- <span>Modo Escuro</span> -->
         </button>
@@ -53,11 +53,22 @@
 
 		<!-- números do Covid -->
 		<crc-toolbar></crc-toolbar>
-    <router-outlet></router-outlet>
+		<router-outlet></router-outlet>
 		<td-layout-footer>
-			<div layout="row" layout-align="start center">
+			<div layout="row" layout-align="center center">
 				<span class="mat-caption">Projeto opensource sobre o avanço do COVID-19 no Brasil</span>
 			</div>
+
+			<!-- <section>
+			<div layout-gt-xs="row" layout-align-gt-xs="right center">
+				<div layout-gt-xs="row" flex-gt-xs="80" layout-margin layout-padding>
+					<div flex layout="column" flex-gt-xs="40">
+						<mat-icon class="push-top-md tc-grey-900" svgIcon="assets:covalent" style="height:auto;width:auto;"></mat-icon>
+						<p class="tc-grey-500">&copy; 2020 Célio Ricardo Castelano</p>
+					</div>
+				</div>
+			</div>
+		</section> -->
 		</td-layout-footer>
 	</td-layout-nav>
 </td-layout>
