@@ -1,22 +1,19 @@
-<!-- <mat-card>
-	<mat-card-title>Situação diária</mat-card-title>
+<mat-card>
+	<mat-card-title>Informações sobre o COVID-19</mat-card-title>
+	<mat-card-subtitle>Fonte: <a href="https://coronavirus.saude.gov.br/" target="_blank"> Ministério da Saúde</a>
+	</mat-card-subtitle>
+	<mat-divider></mat-divider>
 	<mat-card-content>
-		<div class="mat-elevation-z8">
-			<p-accordion class="ui-fluid" [multiple]="false">
-				<p-accordionTab *ngFor="let item of dados">
-          <p-header> {{item.header}} </p-header>
-					<div> {{ item.content}}  </div>
-				</p-accordionTab>
-			</p-accordion>
-		</div>
+		<mat-accordion displayMode="" multi="false" class="mat-table" togglePosition ="before">
+			<mat-expansion-panel *ngFor="let item of dados; let i = index">
+				<mat-expansion-panel-header class="mat-row">
+           <strong>{{i+1}}) {{item.header}}</strong>
+				</mat-expansion-panel-header>
+				<div align="justify">{{item.content}}</div>
+        <p *ngIf="item.image">
+  				<img class="align-self" src="{{url}}/{{item.image}}">
+        </p>
+			</mat-expansion-panel>
+		</mat-accordion>
 	</mat-card-content>
-</mat-card> -->
-
-<mat-accordion displayMode="" multi class="mat-table">
-	<mat-expansion-panel *ngFor="let item of dados">
-		<mat-expansion-panel-header class="mat-row">
-			<span class="mat-cell"><strong>{{item.header}}</strong></span>
-		</mat-expansion-panel-header>
-			<div align="justify">{{item.content}} </div>
-	</mat-expansion-panel>
-</mat-accordion>
+</mat-card>

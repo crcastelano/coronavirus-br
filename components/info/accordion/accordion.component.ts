@@ -6,11 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ["./accordion.component.css"]
 })
 export class AccordionComponent {
+  panelOpenState = false;
   url="https://castelano.com.br/covid/";
+  
   dados = [
     {
       header: "O que é coronavírus? (COVID-19)",
-      content: "Coronavírus é uma família de vírus que causam infecções respiratórias. O novo agente do coronavírus foi descoberto em 31/12/19 após casos registrados na China. Provoca a doença chamada de coronavírus (COVID-19). Os primeiros coronavírus humanos foram isolados pela primeira vez em 1937. No entanto, foi em 1965 que o vírus foi descrito como coronavírus, em decorrência do perfil na microscopia, parecendo uma coroa. A maioria das pessoas se infecta com os coronavírus comuns ao longo da vida, sendo as crianças pequenas mais propensas a se infectarem com o tipo mais comum do vírus. Os coronavírus mais comuns que infectam humanos são o alpha coronavírus 229E e NL63 e beta coronavírus OC43, HKU1..."
+      content: "Coronavírus é uma família de vírus que causam infecções respiratórias. O novo agente do coronavírus foi descoberto em 31/12/19 após casos registrados na China. Provoca a doença chamada de coronavírus (COVID-19). Os primeiros coronavírus humanos foram isolados pela primeira vez em 1937. No entanto, foi em 1965 que o vírus foi descrito como coronavírus, em decorrência do perfil na microscopia, parecendo uma coroa. A maioria das pessoas se infecta com os coronavírus comuns ao longo da vida, sendo as crianças pequenas mais propensas a se infectarem com o tipo mais comum do vírus. Os coronavírus mais comuns que infectam humanos são o alpha coronavírus 229E e NL63 e beta coronavírus OC43, HKU1...",
+      image: "covid-19.jpg",
     },
     {
       header: "Como é transmitido ?",
@@ -45,7 +48,7 @@ export class AccordionComponent {
     {
       header: "Quando usar máscara?",
       content: "Use máscara se estiver tossindo ou espirrando para evitar transmitir vírus para outras pessoas. Para pessoas saudáveis, use máscara somente se estiver cuidando de uma pessoa com doenças respiratórias. As máscaras são eficazes somente quando usadas em combinação com a limpeza frequente das mãos com água e sabão ou higienizadas com álcool em gel 70%. Após usar a máscara, descarte-a em local adequado e lave as mãos. Em todas as situações recomendadas, utilize a máscara do tipo cirúrgico. A máscara N95 é  de uso dos profissionais de saúde e é fundamental para sua proteção. Há risco de faltar, caso a população compre também.",
-      image: "",
+      image: "mascara.png",
     },
     {
       header: "Já existe vacina contra o coronavírus (COVID-19)?",
@@ -77,19 +80,5 @@ export class AccordionComponent {
       content: "Ainda não existem evidências nesse sentido.",
       image: "animais.png",
     },
-    {
-      header: "",
-      content: "",
-      image: "",
-    },
-    {
-      header: "",
-      content: "",
-      image: "",
-    },
   ];
-
-  constructor() {
-  }
-
 }

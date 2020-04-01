@@ -13,13 +13,21 @@ import * as Papa from "papaparse";
   templateUrl: "table-material.component.html"
 })
 export class TableMaterialComponent implements OnInit {
-  displayedColumns: string[] = [
+  colunasDiarios: string[] = [
     "date",
     "state",
     "city",
     "newCases",
     "totalCases"
   ];
+
+  colunasTotal: string[] = [
+    "city",
+    "state",
+    "deaths",
+    "totalCases"
+  ];
+
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -29,7 +37,7 @@ export class TableMaterialComponent implements OnInit {
     private coronaService: CoronaService,
     private httpClient: HttpClient
   ) {
-    this.cardTabela();
+    this.cardTabelaDiaria();
   }
 
   ngOnInit() {
@@ -37,11 +45,11 @@ export class TableMaterialComponent implements OnInit {
     // this.dataSource.sort = this.sort;
   }
 
-  private cardTabela() {
+  private cardTabelaDiaria() {
     this.coronaService.loadCSV()[0].subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
-          const dataTable = this.setTabela(parsedData.data.reverse());
+          const dataTable = this.setTabelaDiaria(parsedData.data.reverse());
           this.dataSource = new MatTableDataSource(dataTable);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -49,7 +57,8 @@ export class TableMaterialComponent implements OnInit {
       });
     });
   }
-  private setTabela(dados) {
+
+  private setTabelaDiaria(dados) {
     let source: any[] = [];
     for (var key = 1; key < dados.length-1; key++) {
       let data: any = {
@@ -58,6 +67,33 @@ export class TableMaterialComponent implements OnInit {
         city: dados[key][3],
         newCases: dados[key][5],
         totalCases: dados[key][6]
+      };
+      source.push(data);
+    }
+    return source;
+  }
+
+  private cardTabelaTotal() {
+    this.coronaService.loadCSV()[1].subscribe((data: any[]) => {
+      Papa.parse(data, {
+        complete: parsedData => {
+          const dataTable = this.setTabelaTotal(parsedData);
+          this.dataSource = new MatTableDataSource(dataTable);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      });
+    });
+  }
+
+  private setTabelaTotal(dados) {
+    let source: any[] = [];
+    for (var key = 1; key < dados.length-1; key++) {
+      let data: any = {
+        city: dados[key][2],
+        state: dados[key][1],
+        deaths: dados[key][4],
+        totalCases: dados[key][5]
       };
       source.push(data);
     }
