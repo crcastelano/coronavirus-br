@@ -20,7 +20,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   markers: Mapa.Marker[] = [];
   // heatmaps: google.maps.LatLng[] = [];
 
- // private map: google.maps.Map = null;
+  private map: google.maps.Map = null;
   private heatmap: google.maps.visualization.HeatmapLayer = null;
   previous;
 
@@ -46,7 +46,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.cardMap();
-    }, 100);
+    }, 500);
   }
 
   changeStyle(data) {
