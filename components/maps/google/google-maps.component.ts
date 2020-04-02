@@ -46,12 +46,12 @@ export class GoogleMapsComponent implements AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.cardMap();
-    }, 1000);
+    }, 100);
   }
 
   changeStyle(data) {
-    alert("selected --->" + this.mapStyles[data].id);
-    this.selectedStyle = this.mapStyles[data].id;
+    // alert("selected --->" + this.mapStyles[data].id);
+    // this.selectedStyle = this.mapStyles[data].id;
   }
 
   private cardMap(): void {
@@ -77,8 +77,8 @@ export class GoogleMapsComponent implements AfterViewInit {
         var cityCircle = new google.maps.Circle({
           strokeColor: "#FF0000",
           strokeOpacity: 0.8,
-          strokeWeight: 1,
-          fillColor: "#49599a", //"#1a237e",
+          strokeWeight: 0.,
+          fillColor: "#FF0000", //"#49599a", //"#1a237e",
           fillOpacity: 0.35,
           map: this.map,
           center: { lat: makerlatitude, lng: markerlongitude },

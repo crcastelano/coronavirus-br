@@ -1,7 +1,15 @@
+.card-placar {
+    border: 55px !important;
+    border-radius: 30px !important;
+    border: #000 !important;
+    width: 150px;
+}
+
 .placar {
   font-family: 'Titillium Web', sans-serif;
   /* color: orange; */
   text-align: center;
+  /* color: tomato; */
   font-size: small;
   padding: 0;
   /* margin-right:20px!important; */
