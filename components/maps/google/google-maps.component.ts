@@ -6,7 +6,6 @@ import { MaterialModule } from "../../../material/material.module";
 import * as Papa from "papaparse";
 import * as Mapa from "../../../models/mapa";
 import { CoronaService } from "../../../services/corona.service";
-import { MAPSTYLES, SELECTEDSTYLE } from '../../../app/app.module';
 import localeBr from "@angular/common/locales/br";
 import { registerLocaleData } from "@angular/common";
 
@@ -21,7 +20,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   markers: Mapa.Marker[] = [];
   // heatmaps: google.maps.LatLng[] = [];
 
-  private map: google.maps.Map = null;
+ // private map: google.maps.Map = null;
   private heatmap: google.maps.visualization.HeatmapLayer = null;
   previous;
 
@@ -34,12 +33,12 @@ export class GoogleMapsComponent implements AfterViewInit {
     { id: Mapa.MAPSTYLEANIGHT, name: "Night" }
   ];
 
-  public selectedStyle; // = SELECTEDSTYLE;
+  public selectedStyle = Mapa.MAPSTYLEBLACK;
 
   apiData: any[] = [];
 
   constructor(private coronaService: CoronaService) {
-    this.selectedStyle = SELECTEDSTYLE;
+
   }
 
   ngOnInit() {}
@@ -117,10 +116,6 @@ export class GoogleMapsComponent implements AfterViewInit {
       this.previous.close();
     }
     this.previous = infowindow;
-    // console.log(index);
-    // console.log(cases);
-    // let estado: Estado;
-    // estado = ESTADOS[index];
   }
 
   mapClicked($event: MouseEvent) {

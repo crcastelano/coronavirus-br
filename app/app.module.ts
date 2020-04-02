@@ -39,13 +39,7 @@ registerLocaleData(ptBr)
 import * as Mapa from "../models/mapa";
 
 export const APP_ROUTES =  [
-  { 
-    icon: 'home',
-    path: '',
-    label: 'Início', 
-    redirectTo: '/mapa', 
-    pathMatch: 'full' 
-  },
+
   { 
     icon: 'map',
     path: 'mapa', 
@@ -76,18 +70,14 @@ export const APP_ROUTES =  [
     component: AboutComponent,
     label: 'Sobre'
   },
+  { 
+    // icon: 'home',
+    path: '',
+    // label: 'Início', 
+    redirectTo: '/mapa', 
+    pathMatch: 'full' 
+  },
 ];
-
-export const MAPSTYLES = [
-    { id: Mapa.MAPSTYLEBLACK, name: "Dark" },
-    { id: Mapa.MAPSTYLESTANDARD, name: "Standard" },
-    { id: Mapa.MAPSTYLEAUBURGINE, name: "Burgine" },
-    { id: Mapa.MAPSTYLESILVER, name: "Silver" },
-    { id: Mapa.MAPSTYLERETRO, name: "Retro" },
-    { id: Mapa.MAPSTYLEANIGHT, name: "Night" }
-  ];
-
-export var SELECTEDSTYLE = Mapa.MAPSTYLEBLACK;
 
 @NgModule({
   imports:      [

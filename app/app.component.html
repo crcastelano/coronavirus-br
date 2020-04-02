@@ -19,28 +19,6 @@
       <mat-icon svgIcon="assets:covid"></mat-icon>
     </button>
 		<div td-toolbar-content layout="row" layout-align="end" flex>
-
-			<button mat-icon-button
-                matTooltip="Card settings"
-                [mat-menu-trigger-for]="settings1">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-
-			<mat-menu xPosition="before" #settings1="matMenu">
-				<mat-card>
-					<mat-card-subtitle>Escolha o estilo do mapa</mat-card-subtitle>
-					<mat-card-content>
-						<mat-select [(ngModel)]="selectedStyle" name="style"
-							(selectionChange)="changeStyle($event.value)">
-							<mat-option *ngFor="let style of mapStyles" [value]="style.id">
-								{{ style.name}}
-							</mat-option>
-						</mat-select>
-					</mat-card-content>
-				</mat-card>
-			</mat-menu>
-
-
 			<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
               <mat-icon>brightness_high</mat-icon>
               <!-- <span>Modo Claro</span> -->

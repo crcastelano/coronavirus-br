@@ -2,7 +2,7 @@ import {Component, MouseEvent} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { TdMediaService } from '@covalent/core/media';
-import { APP_ROUTES, MAPSTYLES, SELECTEDSTYLE } from './app.module';
+import { APP_ROUTES } from './app.module';
 import { MapInfoWindow, MapMarker, GoogleMap } from "@angular/google-maps";
 import * as Mapa from "../models/mapa";
 @Component({
@@ -13,17 +13,13 @@ import * as Mapa from "../models/mapa";
 export class AppComponent  {
   name = 'Corona vírus (COVID-19) no Brasil';
   routes = APP_ROUTES;
-  mapStyles = MAPSTYLES;
-  public selectedStyle = SELECTEDSTYLE; //Mapa.MAPSTYLEBLACK;  
-
-  changeStyle(data) {
-    SELECTEDSTYLE = data;
-  }
 
   constructor(public media: TdMediaService,
               private _iconRegistry: MatIconRegistry,
               private _domSanitizer: DomSanitizer) {
-                
+
+    this.routes.pop();           
+
     this._iconRegistry.addSvgIconInNamespace('assets', 'brasil',
     this._domSanitizer.bypassSecurityTrustResourceUrl('https://image.flaticon.com/icons/svg/457/457992.svg'));
 
