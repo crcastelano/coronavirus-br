@@ -7,6 +7,12 @@ agm-map {
   text-align: right;
 }
 
+.mat-card {
+  /* margin-top: auto; */
+  margin: auto;
+  margin-bottom: 5px;
+}
+
 .placar{
   font-family: 'Titillium Web', sans-serif;
   color: orange;

@@ -6,7 +6,6 @@ import { MaterialModule } from "../../../material/material.module";
 import * as Papa from "papaparse";
 import * as Mapa from "../../../models/mapa";
 import { CoronaService } from "../../../services/corona.service";
-
 import localeBr from "@angular/common/locales/br";
 import { registerLocaleData } from "@angular/common";
 
@@ -38,19 +37,21 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   apiData: any[] = [];
 
-  constructor(private coronaService: CoronaService) {}
+  constructor(private coronaService: CoronaService) {
+
+  }
 
   ngOnInit() {}
 
   ngAfterViewInit() {
     setTimeout(() => {
       this.cardMap();
-    }, 1000);
+    }, 500);
   }
 
   changeStyle(data) {
-    alert("selected --->" + this.mapStyles[data].id);
-    this.selectedStyle = this.mapStyles[data].id;
+    // alert("selected --->" + this.mapStyles[data].id);
+    // this.selectedStyle = this.mapStyles[data].id;
   }
 
   private cardMap(): void {
@@ -76,8 +77,8 @@ export class GoogleMapsComponent implements AfterViewInit {
         var cityCircle = new google.maps.Circle({
           strokeColor: "#FF0000",
           strokeOpacity: 0.8,
-          strokeWeight: 1,
-          fillColor: "#49599a", //"#1a237e",
+          strokeWeight: 0.,
+          fillColor: "#FF0000", //"#49599a", //"#1a237e",
           fillOpacity: 0.35,
           map: this.map,
           center: { lat: makerlatitude, lng: markerlongitude },
@@ -115,10 +116,6 @@ export class GoogleMapsComponent implements AfterViewInit {
       this.previous.close();
     }
     this.previous = infowindow;
-    // console.log(index);
-    // console.log(cases);
-    // let estado: Estado;
-    // estado = ESTADOS[index];
   }
 
   mapClicked($event: MouseEvent) {

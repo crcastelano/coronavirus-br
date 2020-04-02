@@ -31,6 +31,7 @@
 <mat-card>
 	<mat-card-content>
     <div layout="row" layout-align="space-around">
+
 		<div class="placar">
 			<mat-icon material-icons>update</mat-icon>
 			<h6>{{total.date | date:'dd/MM/yyyy'}}</h6>
@@ -54,11 +55,12 @@
 			<h6>{{total.notConfirmedByMS | number:'':'pt-FR'}}</h6>
 			<a> Não Confirmados</a>
 		</div>
+
 		<div class="placar">
 			<mat-icon material-icons>local_hospital</mat-icon>
 			<h6>{{total.deaths | number:'':'pt-FR'}}</h6>
 			<a> Total de Mortes</a>
 		</div>
-    </div>
+   </div>
 	</mat-card-content>
 </mat-card>

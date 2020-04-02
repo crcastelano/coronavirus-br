@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Route, RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 
 import { AgmCoreModule } from "@agm/core";
@@ -14,7 +13,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CovalentModule } from "../modules/covalent.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
 
 import { GoogleMapsComponent } from "../components/maps/google/google-maps.component";
 
@@ -24,14 +23,23 @@ import { LineChartComponent } from "../components/chart/line-chart.component";
 
 import { TableMaterialComponent } from "../components/table/table-material.component";
 
-import { CarouselComponent } from '../components/carousel/carousel.component'
+import { CarouselComponent } from '../components/info/carousel/carousel.component'
+
+import { AccordionComponent } from '../components/info/accordion/accordion.component'
+
+import { InfoComponent } from '../components/info/info.component'
+
+import { AboutComponent } from '../components/about/about.component'
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import tableMaterialComponentCss from '../components/table/table-material.component.css';
 registerLocaleData(ptBr)
 
+import * as Mapa from "../models/mapa";
+
 export const APP_ROUTES =  [
+
   { 
     icon: 'map',
     path: 'mapa', 
@@ -52,15 +60,22 @@ export const APP_ROUTES =  [
   },
   { 
     icon: 'add_alert',
-    path: 'carousel', 
-    component: CarouselComponent,
-    label: 'Prevenção'
+    path: 'info', 
+    component: InfoComponent,
+    label: 'Informações'
   },
   { 
-    icon: 'sentiment_dissatisfied',
-    path: 'carousel', 
-    component: CarouselComponent,
-    label: 'Sintomas'
+    icon: 'info',
+    path: 'sobre', 
+    component: AboutComponent,
+    label: 'Sobre'
+  },
+  { 
+    // icon: 'home',
+    path: '',
+    // label: 'Início', 
+    redirectTo: '/mapa', 
+    pathMatch: 'full' 
   },
 ];
 
@@ -81,9 +96,9 @@ export const APP_ROUTES =  [
     /** Covalent Modules */
     CovalentModule,
     ChartModule,
-    NgbModule    
+    NgbModule
     ],
-  declarations: [ AppComponent, GoogleMapsComponent, ToolBarComponent, LineChartComponent, TableMaterialComponent, CarouselComponent ],
+  declarations: [ AppComponent, GoogleMapsComponent, ToolBarComponent, LineChartComponent, TableMaterialComponent, CarouselComponent, AccordionComponent, InfoComponent, AboutComponent],
   bootstrap:    [ AppComponent ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
 })

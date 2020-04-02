@@ -6,7 +6,7 @@
         <button mat-icon-button
                 matTooltip="Card settings"
                 [mat-menu-trigger-for]="settings1">
-          <mat-icon>more_vert</mat-icon>
+          <mat-icon>color_lens</mat-icon>
         </button>
         <mat-menu xPosition="before" #settings1="matMenu">
           <mat-card>
@@ -25,7 +25,7 @@
 	</mat-card-title>
 	<mat-divider></mat-divider>
 
-	<agm-map [latitude]="-20.77972" [longitude]="-52.92972" [zoom]=4 [minZoom]=3 [styles]="selectedStyle"
+	<agm-map [latitude]="-20.77972" [longitude]="-52.92972" [zoom]=4 [minZoom]=3 [styles]="selectedStyle" [fullscreenControl]="true" 
 		(mapClick)="mapClicked($event)" (mapReady)="onMapLoad($event)" [gestureHandling]="cooperative">
 		<agm-marker 
       *ngFor="let m of markers; let i = index" 
@@ -43,25 +43,4 @@
 		</agm-marker>
 	</agm-map>
 
-
 </mat-card>
-<!-- <button mat-icon-button
-                        matTooltip="Card settings"
-                        [mat-menu-trigger-for]="settings1">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-<mat-menu xPosition="before" #settings1="matMenu">
-	<button mat-menu-item (click)="openTemplate()"> Settings </button>
-	<mat-divider></mat-divider>
-	<button mat-menu-item> Remove </button>
-</mat-menu> -->
-
-<!-- <div class="controls">
-  <mat-form-field>
-    <mat-select placeholder="Estilo do mapa" [(ngModel)]="selectedStyle" name="style" (selectionChange)="changeStyle($event.value)">
-      <mat-option *ngFor="let style of mapStyles" [value]="style.id">
-        {{ style.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div> -->

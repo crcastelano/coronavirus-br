@@ -1,0 +1,13 @@
+img {
+    margin: auto;
+    width: 90px;
+    height: 50px;
+}
+.myCell {
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: justify;
+    margin-bottom: 30px;
+}

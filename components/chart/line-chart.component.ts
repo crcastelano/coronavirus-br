@@ -19,9 +19,20 @@ export class LineChartComponent {
 
   constructor(
     private messageService: MessageService,
-    private coronaService: CoronaService,
+    private coronaService: CoronaService
   ) {
-    this.cardChartAvanco();    
+    this.cardChartAvanco();
+    this.cardChartEstados();
+  }
+
+  private cardChartEstados(): void {
+    this.coronaService.loadCSV()[3].subscribe((data: any[]) => {
+      Papa.parse(data, {
+        complete: parsedData => {
+          this.setChartEstados(parsedData.data);
+        }
+      });
+    });
   }
 
   private cardChartAvanco(): void {
@@ -32,6 +43,44 @@ export class LineChartComponent {
         }
       });
     });
+  }
+
+  private setChartEstados(ApiDados) {
+    //country,state,totalCases,totalCasesMS,notConfirmedByMS,deaths,URL
+    let dados = ApiDados.slice(2, ApiDados.length-1);
+    const labels = dados.map(function(d) {
+      return d[1];
+    });
+
+    const serie1Label = "Casos confirmados";
+    const serie1Data = dados.map(function(d) {
+      return d[3];
+    });
+
+    const serie2Label = "Mortes";
+    const serie2Data = dados.map(function(d) {
+      return d[5];
+    });
+
+    let datasets = {
+      labels: labels,
+      datasets: [
+        {
+          label: serie1Label,
+          data: serie1Data,
+          backgroundColor: "#2196F3",
+          borderColor: "#2196F3"
+        },
+        {
+          label: serie2Label,
+          data: serie2Data,
+          backgroundColor: "#9CCC65",
+          borderColor: "#7CB342"
+        },
+      ]
+    };
+    this.chartEstados.push(JSON.stringify(datasets));
+    this.chartEstados = JSON.parse(this.chartEstados);
   }
 
   private setChartAvanco(ApiDados) {
