@@ -15,7 +15,9 @@ import localeBr from "@angular/common/locales/br";
 export class LineChartComponent {
   @Input() public dados: any;
   chartAvanco = [];
-  chartEstados = [];
+  chartCasos = [];
+  chartMortes = [];
+  options: any;
 
   constructor(
     private messageService: MessageService,
@@ -47,7 +49,13 @@ export class LineChartComponent {
 
   private setChartEstados(ApiDados) {
     //country,state,totalCases,totalCasesMS,notConfirmedByMS,deaths,URL
-    let dados = ApiDados.slice(2, ApiDados.length-1);
+    let dados = ApiDados.slice(2, ApiDados.length - 1);
+
+// dados = dados.filter(function(item) {
+//       return item[5] > 0;
+//     });
+dados.sort((a, b) => (a[1] > b[1]) ? 1 : -1);
+
     const labels = dados.map(function(d) {
       return d[1];
     });
@@ -62,25 +70,51 @@ export class LineChartComponent {
       return d[5];
     });
 
+var colors = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow",
+ "Gray", "BlueViolet", "Aqua", "Chocolate", "Gold", "Fuschia", 
+ "Tomato", "Teal", "Siena", "Silver", "SkyBlue", "Oranged", "Orchid", 
+ "Darkcyan", "Lima", "DarkSalmon", "SeaGreen", "SlateBlue", "MediumSlateBlue", ""];
+
     let datasets = {
       labels: labels,
       datasets: [
         {
           label: serie1Label,
           data: serie1Data,
-          backgroundColor: "#2196F3",
-          borderColor: "#2196F3"
+          backgroundColor: "#9d46ff", //"#2196F3",
+          borderColor: "black" //"#2196F3"
         },
+        // {
+        //   label: serie2Label,
+        //   data: serie2Data,
+        //   backgroundColor: colors, //"#2196F3",
+        //   borderColor: "#7CB342"
+        // }
+      ]
+    };
+
+    this.chartCasos.push(JSON.stringify(datasets));
+    this.chartCasos = JSON.parse(this.chartCasos);
+
+    datasets = {
+      labels: labels,
+      datasets: [
+        // {
+        //   label: serie1Label,
+        //   data: serie1Data,
+        //   backgroundColor: "#9d46ff", //"#2196F3",
+        //   borderColor: "black" //"#2196F3"
+        // },
         {
           label: serie2Label,
           data: serie2Data,
-          backgroundColor: "#9CCC65",
+          backgroundColor: "#d32f2f",
           borderColor: "#7CB342"
-        },
+        }
       ]
     };
-    this.chartEstados.push(JSON.stringify(datasets));
-    this.chartEstados = JSON.parse(this.chartEstados);
+    this.chartMortes.push(JSON.stringify(datasets));
+    this.chartMortes = JSON.parse(this.chartMortes);
   }
 
   private setChartAvanco(ApiDados) {
@@ -94,12 +128,12 @@ export class LineChartComponent {
 
     const serie1Label = "Novos Casos";
     const serie1Data = dados.map(function(d) {
-      return d[4];
+      return d[5];
     });
 
     const serie2Label = "Mortes";
     const serie2Data = dados.map(function(d) {
-      return d[5];
+      return d[4];
     });
 
     const serie3Label = "Total de Casos";
@@ -113,19 +147,20 @@ export class LineChartComponent {
         {
           label: serie1Label,
           data: serie1Data,
-          fill: false,
+          fill: true,
+          color: "red",
           borderColor: "#2196F3"
         },
         {
           label: serie2Label,
           data: serie2Data,
-          fill: false,
+          fill: true,
           borderColor: "#d32f2f"
         },
         {
           label: serie3Label,
           data: serie3Data,
-          fill: false,
+          fill: true,
           borderColor: "#9d46ff"
         }
       ]
