@@ -64,7 +64,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   private setMap() {
-    const fator = 5000;
+    const fator = 4000;
     // this.heatmaps = [];
     for (var key = 1; key < this.apiData.length; key++) {
       let makerlatitude = Number(this.apiData[key][2]);
@@ -92,7 +92,7 @@ export class GoogleMapsComponent implements AfterViewInit {
           this.apiData[key][1] + " - " + "Nº de casos: " + this.apiData[key][4];
         var icon = {
           url:
-            "1https://w3bspace.uk/wp-content/uploads/2016/01/location_map_pin_yellow5.png", // url
+            "https://i.stack.imgur.com/6cDGi.png",
           scaledSize: new google.maps.Size(20, 20) // size
         };
         // marcador no mapa
