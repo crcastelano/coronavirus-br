@@ -37,9 +37,7 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   apiData: any[] = [];
 
-  constructor(private coronaService: CoronaService) {
-
-  }
+  constructor(private coronaService: CoronaService) {}
 
   ngOnInit() {}
 
@@ -77,7 +75,7 @@ export class GoogleMapsComponent implements AfterViewInit {
         var cityCircle = new google.maps.Circle({
           strokeColor: "#FF0000",
           strokeOpacity: 0.8,
-          strokeWeight: 0.,
+          strokeWeight: 0,
           fillColor: "#FF0000", //"#49599a", //"#1a237e",
           fillOpacity: 0.35,
           map: this.map,
@@ -92,14 +90,18 @@ export class GoogleMapsComponent implements AfterViewInit {
 
         var label =
           this.apiData[key][1] + " - " + "Nº de casos: " + this.apiData[key][4];
-
+        var icon = {
+          url:
+            "1https://w3bspace.uk/wp-content/uploads/2016/01/location_map_pin_yellow5.png", // url
+          scaledSize: new google.maps.Size(20, 20) // size
+        };
         // marcador no mapa
         let mark: Mapa.Marker = {
           latitude: makerlatitude,
           longitude: markerlongitude,
           title: title,
           label: label,
-          icon: "",
+          icon: icon,
           draggable: false
         };
         this.markers.push(mark);
@@ -112,6 +114,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   clickedMarker(infowindow) {
+    console.log("clicou");
     if (this.previous) {
       this.previous.close();
     }
