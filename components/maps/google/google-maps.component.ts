@@ -50,7 +50,9 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   setMarcador(mostrar) {
+    console.log(mostrar, ' - ', this.exibir_marcador);
     this.exibir_marcador = mostrar;
+    this.setMap();
   }
   changeStyle(data) {
     // alert("selected --->" + this.mapStyles[data].id);
@@ -70,7 +72,9 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   private setMap() {
     const fator = 4000;
+    this.markers = [];
     // this.heatmaps = [];
+    console.log(this.apiData.length);
     for (var key = 1; key < this.apiData.length; key++) {
       let makerlatitude = Number(this.apiData[key][2]);
       let markerlongitude = Number(this.apiData[key][3]);
@@ -81,7 +85,7 @@ export class GoogleMapsComponent implements AfterViewInit {
           strokeColor: "#FF0000",
           strokeOpacity: 0.8,
           strokeWeight: 0,
-          fillColor: "#FF0000", //"#49599a", //"#1a237e",
+          fillColor: "#ae52d4", //"#FF0000", //"#49599a", //"#1a237e",
           fillOpacity: 0.35,
           map: this.map,
           center: { lat: makerlatitude, lng: markerlongitude },
@@ -114,6 +118,7 @@ export class GoogleMapsComponent implements AfterViewInit {
         }
       }
     }
+    console.log('terminou');
   }
 
   onMapLoad(mapInstance: google.maps.Map) {

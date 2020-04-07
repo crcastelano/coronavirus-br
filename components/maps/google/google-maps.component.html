@@ -4,17 +4,15 @@
 			<span flex style="font-size: small">Cidades com casos confirmados</span>
 			<span>
 		<!-- <div td-toolbar-content layout="column" layout-align="end" flex> -->
-			<button mat-icon-button matTooltip="Exibir marcadores das cidades"  *ngIf="exibir_marcador" (click)="setMarcador(true)">
+			<button mat-icon-button matTooltip="Exibir marcadores das cidades"  *ngIf="!exibir_marcador" (click)="setMarcador(true)">
               <mat-icon>location_on</mat-icon>
               <!-- <span>Modo Claro</span> -->
         </button>
-			<button mat-icon-button matTooltip="Ocultar marcadores das cidades"  *ngIf="not exibir_marcador" (click)="setMarcador(false)">
+			<button mat-icon-button matTooltip="Ocultar marcadores das cidades"  *ngIf="exibir_marcador" (click)="setMarcador(false)">
               <mat-icon>location_off</mat-icon>
               <!-- <span>Modo Escuro</span> -->
         </button>
 		<!-- </div> -->
-
-
         <button mat-icon-button
                 matTooltip="Trocar o tema do mapa"
                 [mat-menu-trigger-for]="settings1">
