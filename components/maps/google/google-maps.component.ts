@@ -22,6 +22,8 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   private map: google.maps.Map = null;
   private heatmap: google.maps.visualization.HeatmapLayer = null;
+
+  exibir_marcador = true;
   previous;
 
   mapStyles = [
@@ -47,6 +49,9 @@ export class GoogleMapsComponent implements AfterViewInit {
     }, 500);
   }
 
+  setMarcador(mostrar) {
+    this.exibir_marcador = mostrar;
+  }
   changeStyle(data) {
     // alert("selected --->" + this.mapStyles[data].id);
     // this.selectedStyle = this.mapStyles[data].id;
@@ -91,20 +96,22 @@ export class GoogleMapsComponent implements AfterViewInit {
         var label =
           this.apiData[key][1] + " - " + "Nº de casos: " + this.apiData[key][4];
         var icon = {
-          url:
-            "https://i.stack.imgur.com/6cDGi.png",
+          url: "https://i.stack.imgur.com/6cDGi.png",
           scaledSize: new google.maps.Size(20, 20) // size
         };
-        // marcador no mapa
-        let mark: Mapa.Marker = {
-          latitude: makerlatitude,
-          longitude: markerlongitude,
-          title: title,
-          label: label,
-          icon: icon,
-          draggable: false
-        };
-        this.markers.push(mark);
+
+        if (this.exibir_marcador) {
+          // marcador no mapa
+          let mark: Mapa.Marker = {
+            latitude: makerlatitude,
+            longitude: markerlongitude,
+            title: title,
+            label: label,
+            icon: icon,
+            draggable: false
+          };
+          this.markers.push(mark);
+        }
       }
     }
   }
