@@ -28,8 +28,11 @@ export class CoronaService {
     return retorno; //this.csvService.loadCSV(url);
   }
 
-  public loadCSV2(key): Observable<any> {
-    return this.csvService.loadCSV(APICSV[key]);
+  public loadCSV2(key): Observable<any>[] {
+    let retorno = [];
+    retorno.push( this.csvService.loadCSV(APICSV[key]) );
+    console.log(retorno);
+    return retorno;
   }
 
   public loadCSVTotal(): Observable<any> {

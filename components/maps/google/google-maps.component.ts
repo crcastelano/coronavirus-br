@@ -60,7 +60,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   private cardMap(): void {
-    this.coronaService.loadCSV2(5)[5].subscribe((data: any[]) => {
+    this.coronaService.loadCSV()[5].subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
           this.apiData = parsedData.data;
@@ -74,7 +74,6 @@ export class GoogleMapsComponent implements AfterViewInit {
     const fator = 4000;
     this.markers = [];
     // this.heatmaps = [];
-    console.log(this.apiData.length);
     for (var key = 1; key < this.apiData.length; key++) {
       let makerlatitude = Number(this.apiData[key][2]);
       let markerlongitude = Number(this.apiData[key][3]);
@@ -118,7 +117,6 @@ export class GoogleMapsComponent implements AfterViewInit {
         }
       }
     }
-    console.log('terminou');
   }
 
   onMapLoad(mapInstance: google.maps.Map) {
