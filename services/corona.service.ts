@@ -7,6 +7,7 @@ import { Total } from "../models/total";
 import * as Papa from "papaparse";
 import { CSVService } from "./csv.service";
 import { APICSV } from "./ApiCsv";
+import { APICSV2 } from "./ApiCsv";
 
 @Injectable({
   providedIn: "root"
@@ -29,9 +30,12 @@ export class CoronaService {
   }
 
   public loadCSV2(key): Observable<any> {
-    let ret = this.csvService.loadCSV(APICSV[key]);
+    console.log('key: ' + key);
+    console.log(APICSV2[key]);
+    let ret = this.csvService.loadCSV2(APICSV2[key]);
     // console.log(ret);
-    return ret.subscribe(data => console.log(data));
+    ret.subscribe((data:any) => console.log(data));
+    return ret;
   }
 
   public loadCSVTotal(): Observable<any> {

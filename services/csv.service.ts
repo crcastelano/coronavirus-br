@@ -46,6 +46,14 @@ export class CSVService {
       });
   }
 
+  public loadCSV2(file): Observable<any> {
+    console.log(file);
+    return this.httpClient
+      .get(file, {
+        responseType: "text"
+      });
+  }
+
   private extractDataTotal(res) {
     let csvData = res || "";
     Papa.parse(csvData, {
