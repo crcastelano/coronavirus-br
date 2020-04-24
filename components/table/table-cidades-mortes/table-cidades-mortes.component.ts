@@ -37,7 +37,7 @@ export class TableCidadesMortesComponent implements OnInit {
   }
 
   private cardTabelaTotal() {
-    this.coronaService.loadCSV()[1].subscribe((data: any[]) => {
+    this.coronaService.loadCSV2(1)[1].subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
           const dataTable = this.setTabelaTotal(parsedData.data);

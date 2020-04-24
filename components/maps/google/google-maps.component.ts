@@ -60,7 +60,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   private cardMap(): void {
-    this.coronaService.loadCSV()[5].subscribe((data: any[]) => {
+    this.coronaService.loadCSV2(5)[5].subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
           this.apiData = parsedData.data;
