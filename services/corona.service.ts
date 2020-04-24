@@ -30,12 +30,7 @@ export class CoronaService {
   }
 
   public loadCSV2(key): Observable<any> {
-    console.log('key: ' + key);
-    console.log(APICSV2[key]);
-    let ret = this.csvService.loadCSV2(APICSV2[key]);
-    // console.log(ret);
-    ret.subscribe((data:any) => console.log(data));
-    return ret;
+    return this.csvService.loadCSV2(APICSV2[key]);
   }
 
   public loadCSVTotal(): Observable<any> {

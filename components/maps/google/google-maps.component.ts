@@ -50,7 +50,6 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   setMarcador(mostrar) {
-    console.log(mostrar, ' - ', this.exibir_marcador);
     this.exibir_marcador = mostrar;
     this.setMap();
   }
@@ -60,7 +59,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   private cardMap(): void {
-    this.coronaService.loadCSV()[5].subscribe((data: any[]) => {
+    this.coronaService.loadCSV2(5).subscribe((data: any) => {
       Papa.parse(data, {
         complete: parsedData => {
           this.apiData = parsedData.data;
@@ -71,7 +70,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   private setMap() {
-    const fator = 4000;
+    const fator = 2000;
     this.markers = [];
     // this.heatmaps = [];
     for (var key = 1; key < this.apiData.length; key++) {
@@ -124,7 +123,6 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   clickedMarker(infowindow) {
-    console.log("clicou");
     if (this.previous) {
       this.previous.close();
     }
@@ -132,10 +130,10 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   mapClicked($event: MouseEvent) {
-    console.log("clicou no mapa");
+    // console.log("clicou no mapa");
   }
 
   markerDragEnd(m: Mapa.Marker, $event: MouseEvent) {
-    console.log("dragEnd", m, $event);
+    // console.log("dragEnd", m, $event);
   }
 }
