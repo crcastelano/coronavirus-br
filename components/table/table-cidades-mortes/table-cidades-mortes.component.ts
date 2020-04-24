@@ -19,6 +19,10 @@ export class TableCidadesMortesComponent implements OnInit {
     "TtotalCases"
   ];
 
+  length = 10;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  
   dataSourceTotal: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -69,6 +73,12 @@ export class TableCidadesMortesComponent implements OnInit {
 
     if (this.dataSourceTotal.paginator) {
       this.dataSourceTotal.paginator.firstPage();
+    }
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
 }

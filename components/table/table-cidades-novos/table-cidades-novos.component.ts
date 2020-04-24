@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { CoronaService } from "../../../services/corona.service";
@@ -20,6 +20,10 @@ export class TableCidadesNovosComponent {
     "totalCases"
   ];
 
+  length = 10;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
   dataSourceDiario: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -33,7 +37,7 @@ export class TableCidadesNovosComponent {
   }
 
   private cardTabelaDiaria() {
-    this.coronaService.loadCSV()[0].subscribe((data: any[]) => {
+    this.coronaService.loadCSV2(0).subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
           const dataTable = this.setTabelaDiaria(parsedData.data.reverse());
@@ -66,6 +70,12 @@ export class TableCidadesNovosComponent {
 
     if (this.dataSourceDiario.paginator) {
       this.dataSourceDiario.paginator.firstPage();
+    }
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
   }
 }

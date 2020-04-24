@@ -34,7 +34,7 @@ export class ToolBarComponent {
   }
 
   private cardTotal(): void {
-    this.coronaService.loadCSV()[3].subscribe((data: any[]) => {
+    this.coronaService.loadCSV2(3).subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
           this.setTotal(parsedData.data[1]);
@@ -46,7 +46,7 @@ export class ToolBarComponent {
   setTotal(dados) {
     this.clearTotal();
 
-    this.coronaService.loadCSV()[2].subscribe((data: any[]) => {
+    this.coronaService.loadCSV2(2).subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
           this.total.date = parsedData.data.reverse()[1][0];

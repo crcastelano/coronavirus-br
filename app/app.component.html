@@ -1,6 +1,6 @@
 <td-layout [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
 	[sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '240px' : '100%'" [class]="activeTheme">
-	<td-navigation-drawer logo="assets:brasil" #sidenav flex [sidenavTitle]="name">
+	<td-navigation-drawer logo="assets:covid" #sidenav flex [sidenavTitle]="name">
 		<mat-nav-list>
 			<a *ngFor="let item of routes" mat-list-item routerLink="{{item.path}}" (click)="sidenav.toggle()">
 				<mat-icon>{{item.icon}}</mat-icon>{{item.label}}
@@ -16,7 +16,7 @@
 	</td-navigation-drawer>
 	<td-layout-nav [toolbarTitle]="name" navigationRoute="/">
 		<button mat-icon-button td-menu-button tdLayoutToggle>
-      <mat-icon svgIcon="assets:covid"></mat-icon>
+      <mat-icon svgIcon="assets:brasil"></mat-icon>
     </button>
 		<div td-toolbar-content layout="row" layout-align="end" flex>
 			<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">

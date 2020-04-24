@@ -23,7 +23,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   private map: google.maps.Map = null;
   private heatmap: google.maps.visualization.HeatmapLayer = null;
 
-  exibir_marcador = false;
+  exibir_marcador = true;
   previous;
 
   mapStyles = [
@@ -39,8 +39,10 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   apiData: any[] = [];
 
-  constructor(private coronaService: CoronaService,
-   private _mapsAPILoader: MapsAPILoader) {}
+  constructor(
+    private coronaService: CoronaService,
+    private _mapsAPILoader: MapsAPILoader
+  ) {}
 
   ngOnInit() {}
 
@@ -71,37 +73,28 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   private setMap() {
-    const fator = 2000;
+    var icon = {
+      url: "https://i.stack.imgur.com/6cDGi.png",
+      scaledSize: new google.maps.Size(5, 5) // size
+    };
     this.markers = [];
     this.heatmaps = [];
+
     for (var key = 1; key < this.apiData.length; key++) {
       let makerlatitude = Number(this.apiData[key][2]);
       let markerlongitude = Number(this.apiData[key][3]);
+      var casos = this.apiData[key][4];
 
+      // setCircle(makerlatitude, markerlongitude, casos) {
       if (makerlatitude && markerlongitude) {
-        // círculo com raio proporcioal aos nº de casos
-        // var cityCircle = new google.maps.Circle({
-        //   strokeColor: "#FF0000",
-        //   strokeOpacity: 0.8,
-        //   strokeWeight: 0,
-        //   fillColor: "#ae52d4", //"#FF0000", //"#49599a", //"#1a237e",
-        //   fillOpacity: 0.35,
-        //   map: this.map,
-        //   center: { lat: makerlatitude, lng: markerlongitude },
-        //   radius: Math.sqrt(this.apiData[key][4] * fator) * 100
-        // });
         var title =
           this.apiData[key][1] +
           "\n\n" +
           "Nº de casos: " +
-          this.apiData[key][4];
+          casos;
 
         var label =
-          this.apiData[key][1] + " - " + "Nº de casos: " + this.apiData[key][4];
-        var icon = {
-          url: "https://i.stack.imgur.com/6cDGi.png",
-          scaledSize: new google.maps.Size(10, 10) // size
-        };
+          this.apiData[key][1] + " - Nº de casos: " + casos;
 
         if (this.exibir_marcador) {
           // marcador no mapa
@@ -115,12 +108,11 @@ export class GoogleMapsComponent implements AfterViewInit {
           };
           this.markers.push(mark);
         }
-        var casos = this.apiData[key][4];
-       
-        var calor = new google.maps.LatLng(makerlatitude, markerlongitude);
-        var arrayCalor = Array(casos).fill( calor );
 
-        this.heatmaps.push( ...arrayCalor );
+        var calor = new google.maps.LatLng(makerlatitude, markerlongitude);
+        var arrayCalor = Array(casos).fill(calor);
+
+        this.heatmaps.push(...arrayCalor);
       }
     }
 
@@ -130,6 +122,20 @@ export class GoogleMapsComponent implements AfterViewInit {
     });
   }
 
+  setCircle(latitude, longitude, raio) {
+    const fator = 2000;
+    //círculo com raio proporcioal aos nº de casos
+    var cityCircle = new google.maps.Circle({
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 0,
+      fillColor: "#ae52d4", //"#FF0000", //"#49599a", //"#1a237e",
+      fillOpacity: 0.35,
+      map: this.map,
+      center: { lat: latitude, lng: longitude },
+      radius: Math.sqrt(raio * fator) * 100
+    });
+  }
   onMapLoad(mapInstance: google.maps.Map) {
     this.map = mapInstance;
   }
