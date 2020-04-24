@@ -18,7 +18,7 @@ declare var google: any;
 })
 export class GoogleMapsComponent implements AfterViewInit {
   markers: Mapa.Marker[] = [];
-  // heatmaps: google.maps.LatLng[] = [];
+  heatmaps: google.maps.LatLng[] = [];
 
   private map: google.maps.Map = null;
   private heatmap: google.maps.visualization.HeatmapLayer = null;
@@ -114,8 +114,18 @@ export class GoogleMapsComponent implements AfterViewInit {
           };
           this.markers.push(mark);
         }
+        for (var i = 0; i < this.apiData[key][4]; i++) {
+          this.heatmaps.push(
+            new google.maps.LatLng(makerlatitude, markerlongitude)
+            //            new google.maps.LatLng(-23.8779431, -49.8046873)
+          );
+        }
       }
     }
+    this.heatmap = new google.maps.visualization.HeatmapLayer({
+      map: this.map,
+      data: this.heatmaps
+    });
   }
 
   onMapLoad(mapInstance: google.maps.Map) {
