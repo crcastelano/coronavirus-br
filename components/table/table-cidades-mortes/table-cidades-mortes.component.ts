@@ -37,7 +37,6 @@ export class TableCidadesMortesComponent implements OnInit {
   }
 
   private cardTabelaTotal() {
-    // console.log(this.coronaService.loadCSV2(1));
     this.coronaService.loadCSV2(1).subscribe((data: any) => {
       Papa.parse(data, {
         complete: parsedData => {
@@ -50,21 +49,6 @@ export class TableCidadesMortesComponent implements OnInit {
       });
     });
   }
-
-/*
-  private cardTabelaTotal() {
-    this.coronaService.loadCSV()[1].subscribe((data: any[]) => {
-      Papa.parse(data, {
-        complete: parsedData => {
-          const dataTable = this.setTabelaTotal(parsedData.data);
-          this.dataSourceTotal = new MatTableDataSource(dataTable);
-          this.dataSourceTotal.paginator = this.paginator;
-          this.dataSourceTotal.sort = this.sort;
-        }
-      });
-    });
-  }
-*/
 
   private setTabelaTotal(dados) {
     const source: any[] = [];
@@ -80,11 +64,11 @@ export class TableCidadesMortesComponent implements OnInit {
   }
 
   applyFilterTotal(event: Event) {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSourceTotal.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceTotal.filter = filterValue.trim().toLowerCase();
 
-    // if (this.dataSourceTotal.paginator) {
-    //   this.dataSourceTotal.paginator.firstPage();
-    // }
+    if (this.dataSourceTotal.paginator) {
+      this.dataSourceTotal.paginator.firstPage();
+    }
   }
 }

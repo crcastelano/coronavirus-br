@@ -23,7 +23,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   private map: google.maps.Map = null;
   private heatmap: google.maps.visualization.HeatmapLayer = null;
 
-  exibir_marcador = true;
+  exibir_marcador = false;
   previous;
 
   mapStyles = [
@@ -100,33 +100,27 @@ export class GoogleMapsComponent implements AfterViewInit {
           this.apiData[key][1] + " - " + "Nº de casos: " + this.apiData[key][4];
         var icon = {
           url: "https://i.stack.imgur.com/6cDGi.png",
-          scaledSize: new google.maps.Size(20, 20) // size
+          scaledSize: new google.maps.Size(10, 10) // size
         };
 
-        // if (this.exibir_marcador) {
-        //   // marcador no mapa
-        //   let mark: Mapa.Marker = {
-        //     latitude: makerlatitude,
-        //     longitude: markerlongitude,
-        //     title: title,
-        //     label: label,
-        //     icon: icon,
-        //     draggable: false
-        //   };
-        //   this.markers.push(mark);
-        // }
+        if (this.exibir_marcador) {
+          // marcador no mapa
+          let mark: Mapa.Marker = {
+            latitude: makerlatitude,
+            longitude: markerlongitude,
+            title: title,
+            label: label,
+            icon: icon,
+            draggable: false
+          };
+          this.markers.push(mark);
+        }
         var casos = this.apiData[key][4];
        
         var calor = new google.maps.LatLng(makerlatitude, markerlongitude);
         var arrayCalor = Array(casos).fill( calor );
 
         this.heatmaps.push( ...arrayCalor );
-
-        // for (var i = 0; i < casos; i++) {
-        //   this.heatmaps.push(
-        //     new google.maps.LatLng(makerlatitude, markerlongitude)
-        //   );
-        // }
       }
     }
 
@@ -148,7 +142,7 @@ export class GoogleMapsComponent implements AfterViewInit {
   }
 
   mapClicked($event: MouseEvent) {
-    // console.log("clicou no mapa");
+    console.log("clicou no mapa");
   }
 
   markerDragEnd(m: Mapa.Marker, $event: MouseEvent) {
