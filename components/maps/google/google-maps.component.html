@@ -1,56 +1,58 @@
-<mat-card>
-	<mat-card-title>
-		<div layout="row">
-			<span flex style="font-size: small">Cidades com casos confirmados</span>
-			<span>
+<div layout-gt-sm="row" tdMediaToggle="gt-sm" [mediaClasses]="['push-sm']">
+	<div flex-gt-sm="65">
+		<mat-card>
+			<mat-card-title>
+				<div layout="row">
+					<span flex style="font-size: small">Cidades com casos confirmados</span>
+					<span>
 		<!-- <div td-toolbar-content layout="column" layout-align="end" flex> -->
 			<button mat-icon-button matTooltip="Exibir marcadores das cidades"  *ngIf="!exibir_marcador" (click)="setMarcador(true)">
               <mat-icon>location_on</mat-icon>
               <!-- <span>Modo Claro</span> -->
-        </button>
-			<button mat-icon-button matTooltip="Ocultar marcadores das cidades"  *ngIf="exibir_marcador" (click)="setMarcador(false)">
+					</button>
+					<button mat-icon-button matTooltip="Ocultar marcadores das cidades"  *ngIf="exibir_marcador" (click)="setMarcador(false)">
               <mat-icon>location_off</mat-icon>
               <!-- <span>Modo Escuro</span> -->
         </button>
-		<!-- </div> -->
-        <button mat-icon-button
+					<!-- </div> -->
+					<button mat-icon-button
                 matTooltip="Trocar o tema do mapa"
                 [mat-menu-trigger-for]="settings1">
           <mat-icon>color_lens</mat-icon>
         </button>
-        <mat-menu xPosition="before" #settings1="matMenu">
-          <mat-card>
-            <mat-card-subtitle>Escolha o estilo do mapa</mat-card-subtitle>
-            <mat-card-content>
-              <mat-select [(ngModel)]="selectedStyle" name="style" (selectionChange)="changeStyle($event.value)">
-                <mat-option *ngFor="let style of mapStyles" [value]="style.id">
-                  {{ style.name}}
-                </mat-option>
-              </mat-select>
-            </mat-card-content>
-          </mat-card>
-        </mat-menu>
-      </span>
-		</div>
-	</mat-card-title>
-	<mat-divider></mat-divider>
+					<mat-menu xPosition="before" #settings1="matMenu">
+						<mat-card>
+							<mat-card-subtitle>Escolha o estilo do mapa</mat-card-subtitle>
+							<mat-card-content>
+								<mat-select [(ngModel)]="selectedStyle" name="style"
+									(selectionChange)="changeStyle($event.value)">
+									<mat-option *ngFor="let style of mapStyles" [value]="style.id">
+										{{ style.name}}
+									</mat-option>
+								</mat-select>
+							</mat-card-content>
+						</mat-card>
+					</mat-menu>
+					</span>
+				</div>
+			</mat-card-title>
+			<mat-divider></mat-divider>
 
-	<agm-map [latitude]="-20.77972" [longitude]="-52.92972" [zoom]=4 [minZoom]=3 [styles]="selectedStyle" [fullscreenControl]="true" 
-		(mapClick)="mapClicked($event)" (mapReady)="onMapLoad($event)" [gestureHandling]="cooperative">
-		<agm-marker 
-      *ngFor="let m of markers; let i = index" 
-      (markerClick)="clickedMarker(infowindow)"
-			[latitude]="m.latitude" 
-      [longitude]="m.longitude" 
-      [title]="m.title"
-      [iconUrl]="m.icon"
-			[markerDraggable]="m.draggable" 
-      (dragEnd)="markerDragEnd(m, $event)"
-    >
-    <agm-info-window #infowindow>
-      <strong class="infowindow">{{ m.label }}</strong>
-    </agm-info-window>
-		</agm-marker>
-	</agm-map>
+			<agm-map [latitude]="-20.77972" [longitude]="-52.92972" [zoom]=4 [minZoom]=3 [styles]="selectedStyle"
+				[fullscreenControl]="true" (mapClick)="mapClicked($event)" (mapReady)="onMapLoad($event)"
+				[gestureHandling]="cooperative">
+				<agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(infowindow)"
+					[latitude]="m.latitude" [longitude]="m.longitude" [title]="m.title" [iconUrl]="m.icon"
+					[markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+					<agm-info-window #infowindow>
+						<strong class="infowindow">{{ m.label }}</strong>
+					</agm-info-window>
+				</agm-marker>
+			</agm-map>
+		</mat-card>
+	</div>
 
-</mat-card>
+	<div flex-gt-sm="35">
+		<crc-table-cidades-mortes></crc-table-cidades-mortes>
+	</div>
+</div>
