@@ -81,11 +81,11 @@ export class TableCidadesMortesComponent implements OnInit {
   }
 
   applyFilterTotal(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceTotal.filter = filterValue.trim().toLowerCase();
+    // const filterValue = (event.target as HTMLInputElement).value;
+    // this.dataSourceTotal.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSourceTotal.paginator) {
-      this.dataSourceTotal.paginator.firstPage();
-    }
+    // if (this.dataSourceTotal.paginator) {
+    //   this.dataSourceTotal.paginator.firstPage();
+    // }
   }
 }
