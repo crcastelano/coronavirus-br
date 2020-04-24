@@ -37,18 +37,35 @@ export class TableCidadesMortesComponent implements OnInit {
   }
 
   private cardTabelaTotal() {
-    this.coronaService.loadCSV2(1).subscribe((data: any[]) => {
+    console.log(this.coronaService.loadCSV2(1));
+    this.coronaService.loadCSV2(1).subscribe((data: any) => {
         console.log('data');
-      // Papa.parse(data, {
-      //   complete: parsedData => {
-      //     const dataTable = this.setTabelaTotal(parsedData.data);
-      //     this.dataSourceTotal = new MatTableDataSource(dataTable);
-      //     this.dataSourceTotal.paginator = this.paginator;
-      //     this.dataSourceTotal.sort = this.sort;
-      //   }
-      // });
+      Papa.parse(data, {
+        complete: parsedData => {
+
+          const dataTable = this.setTabelaTotal(parsedData.data);
+          this.dataSourceTotal = new MatTableDataSource(dataTable);
+          this.dataSourceTotal.paginator = this.paginator;
+          this.dataSourceTotal.sort = this.sort;
+        }
+      });
     });
   }
+
+/*
+  private cardTabelaTotal() {
+    this.coronaService.loadCSV()[1].subscribe((data: any[]) => {
+      Papa.parse(data, {
+        complete: parsedData => {
+          const dataTable = this.setTabelaTotal(parsedData.data);
+          this.dataSourceTotal = new MatTableDataSource(dataTable);
+          this.dataSourceTotal.paginator = this.paginator;
+          this.dataSourceTotal.sort = this.sort;
+        }
+      });
+    });
+  }
+*/
 
   private setTabelaTotal(dados) {
     const source: any[] = [];
