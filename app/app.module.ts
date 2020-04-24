@@ -92,7 +92,7 @@ export const APP_ROUTES =  [
     AgmCoreModule.forRoot({
       //@agm/core
       apiKey: "AIzaSyBtkzgjM1tqaHRipAlAF8HRuRr_xFNzFuk",
-      // libraries: ['visualization', 'geometry'], 
+      libraries: ['visualization', 'geometry'], 
     }),
     HttpClientModule,
     /** Material Modules */

@@ -1,5 +1,5 @@
 import { Component, HostBinding, AfterViewInit } from "@angular/core";
-import { AgmCoreModule, MouseEvent } from "@agm/core";
+import { AgmCoreModule, MouseEvent, MapsAPILoader } from "@agm/core";
 import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 import { MapInfoWindow, MapMarker, GoogleMap } from "@angular/google-maps";
 import { MaterialModule } from "../../../material/material.module";
@@ -39,7 +39,8 @@ export class GoogleMapsComponent implements AfterViewInit {
 
   apiData: any[] = [];
 
-  constructor(private coronaService: CoronaService) {}
+  constructor(private coronaService: CoronaService,
+   private _mapsAPILoader: MapsAPILoader) {}
 
   ngOnInit() {}
 
@@ -72,23 +73,23 @@ export class GoogleMapsComponent implements AfterViewInit {
   private setMap() {
     const fator = 2000;
     this.markers = [];
-    // this.heatmaps = [];
+    this.heatmaps = [];
     for (var key = 1; key < this.apiData.length; key++) {
       let makerlatitude = Number(this.apiData[key][2]);
       let markerlongitude = Number(this.apiData[key][3]);
 
       if (makerlatitude && markerlongitude) {
         // círculo com raio proporcioal aos nº de casos
-        var cityCircle = new google.maps.Circle({
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.8,
-          strokeWeight: 0,
-          fillColor: "#ae52d4", //"#FF0000", //"#49599a", //"#1a237e",
-          fillOpacity: 0.35,
-          map: this.map,
-          center: { lat: makerlatitude, lng: markerlongitude },
-          radius: Math.sqrt(this.apiData[key][4] * fator) * 100
-        });
+        // var cityCircle = new google.maps.Circle({
+        //   strokeColor: "#FF0000",
+        //   strokeOpacity: 0.8,
+        //   strokeWeight: 0,
+        //   fillColor: "#ae52d4", //"#FF0000", //"#49599a", //"#1a237e",
+        //   fillOpacity: 0.35,
+        //   map: this.map,
+        //   center: { lat: makerlatitude, lng: markerlongitude },
+        //   radius: Math.sqrt(this.apiData[key][4] * fator) * 100
+        // });
         var title =
           this.apiData[key][1] +
           "\n\n" +
@@ -102,22 +103,21 @@ export class GoogleMapsComponent implements AfterViewInit {
           scaledSize: new google.maps.Size(20, 20) // size
         };
 
-        if (this.exibir_marcador) {
-          // marcador no mapa
-          let mark: Mapa.Marker = {
-            latitude: makerlatitude,
-            longitude: markerlongitude,
-            title: title,
-            label: label,
-            icon: icon,
-            draggable: false
-          };
-          this.markers.push(mark);
-        }
-        for (var i = 0; i < this.apiData[key][4]; i++) {
+        // if (this.exibir_marcador) {
+        //   // marcador no mapa
+        //   let mark: Mapa.Marker = {
+        //     latitude: makerlatitude,
+        //     longitude: markerlongitude,
+        //     title: title,
+        //     label: label,
+        //     icon: icon,
+        //     draggable: false
+        //   };
+        //   this.markers.push(mark);
+        // }
+        for (var i = 0; i < (this.apiData[key][4] * 100); i++) {
           this.heatmaps.push(
             new google.maps.LatLng(makerlatitude, markerlongitude)
-            //            new google.maps.LatLng(-23.8779431, -49.8046873)
           );
         }
       }
