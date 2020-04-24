@@ -115,7 +115,14 @@ export class GoogleMapsComponent implements AfterViewInit {
         //   };
         //   this.markers.push(mark);
         // }
-        for (var i = 0; i < (this.apiData[key][4] * 100); i++) {
+        var calor = google.maps.visualization.HeatmapLayer = new google.maps.LatLng(makerlatitude, markerlongitude);
+        var casos = this.apiData[key][4];
+
+        var arrayCalor = google.maps.visualization.HeatmapLayer[casos];
+        console.log(arrayCalor);
+        arrayCalor.fill ( new google.maps.LatLng(makerlatitude, markerlongitude) );
+
+        for (var i = 0; i < (this.apiData[key][4] * 5); i++) {
           this.heatmaps.push(
             new google.maps.LatLng(makerlatitude, markerlongitude)
           );
