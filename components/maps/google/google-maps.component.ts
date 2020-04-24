@@ -115,20 +115,21 @@ export class GoogleMapsComponent implements AfterViewInit {
         //   };
         //   this.markers.push(mark);
         // }
-        var calor = google.maps.visualization.HeatmapLayer = new google.maps.LatLng(makerlatitude, markerlongitude);
         var casos = this.apiData[key][4];
+       
+        var calor = new google.maps.LatLng(makerlatitude, markerlongitude);
+        var arrayCalor = Array(casos).fill( calor );
 
-        var arrayCalor = google.maps.visualization.HeatmapLayer[casos];
-        console.log(arrayCalor);
-        arrayCalor.fill ( new google.maps.LatLng(makerlatitude, markerlongitude) );
+        this.heatmaps.push( ...arrayCalor );
 
-        for (var i = 0; i < (this.apiData[key][4] * 5); i++) {
-          this.heatmaps.push(
-            new google.maps.LatLng(makerlatitude, markerlongitude)
-          );
-        }
+        // for (var i = 0; i < casos; i++) {
+        //   this.heatmaps.push(
+        //     new google.maps.LatLng(makerlatitude, markerlongitude)
+        //   );
+        // }
       }
     }
+
     this.heatmap = new google.maps.visualization.HeatmapLayer({
       map: this.map,
       data: this.heatmaps
