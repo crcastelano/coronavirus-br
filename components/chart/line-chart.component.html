@@ -8,10 +8,19 @@
 </mat-card>
 
 <mat-card>
-	<mat-card-title>Números de casos e mortes por estado</mat-card-title>
+	<mat-card-title>Números de casos por estado</mat-card-title>
 	<mat-card-content>
 		<div class="mat-elevation-z8">
-			<p-chart type="bar" [data]="chartEstados" [height]="290"></p-chart>
+			<p-chart type="bar" [data]="chartCasos" [height]="290"></p-chart>
+		</div>
+	</mat-card-content>
+</mat-card>
+
+<mat-card>
+	<mat-card-title>Números de mortes por estado</mat-card-title>
+	<mat-card-content>
+		<div class="mat-elevation-z8">
+			<p-chart type="bar" [data]="chartMortes" [height]="290"></p-chart>
 		</div>
 	</mat-card-content>
 </mat-card>

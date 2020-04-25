@@ -23,6 +23,10 @@ import { LineChartComponent } from "../components/chart/line-chart.component";
 
 import { TableMaterialComponent } from "../components/table/table-material.component";
 
+import { TableCidadesNovosComponent } from "../components/table/table-cidades-novos/table-cidades-novos.component";
+
+import { TableCidadesMortesComponent } from "../components/table/table-cidades-mortes/table-cidades-mortes.component";
+
 import { CarouselComponent } from '../components/info/carousel/carousel.component'
 
 import { AccordionComponent } from '../components/info/accordion/accordion.component'
@@ -88,7 +92,7 @@ export const APP_ROUTES =  [
     AgmCoreModule.forRoot({
       //@agm/core
       apiKey: "AIzaSyBtkzgjM1tqaHRipAlAF8HRuRr_xFNzFuk",
-      // libraries: ['visualization', 'geometry'], 
+      libraries: ['visualization', 'geometry'], 
     }),
     HttpClientModule,
     /** Material Modules */
@@ -98,7 +102,7 @@ export const APP_ROUTES =  [
     ChartModule,
     NgbModule
     ],
-  declarations: [ AppComponent, GoogleMapsComponent, ToolBarComponent, LineChartComponent, TableMaterialComponent, CarouselComponent, AccordionComponent, InfoComponent, AboutComponent],
+  declarations: [ AppComponent, GoogleMapsComponent, ToolBarComponent, LineChartComponent, TableCidadesNovosComponent, TableCidadesMortesComponent, TableMaterialComponent, CarouselComponent, AccordionComponent, InfoComponent, AboutComponent],
   bootstrap:    [ AppComponent ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
 })

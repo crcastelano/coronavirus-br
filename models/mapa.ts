@@ -5,7 +5,7 @@ export interface Marker {
   longitude?: number;
   title?: string;
   label?: string;
-  icon?: string;
+  icon?: any;
   draggable?: boolean;
 }
 

@@ -29,3 +29,13 @@ export const APICSV = {
   GPS: (localCSV ? fileCSVGPS : urlCSVGPS),
   GPSCities: (localCSV ? fileCSVGPSCities : urlCSVGPSCities),
 };
+
+export const APICSV2 = {
+  0: (localCSV ? fileCSVCitiesTime : urlCSVCitiesTime),
+  1: (localCSV ? fileCSVCities : urlCSVCities),
+  2: (localCSV ? fileCSVStates : urlCSVStates),
+  3: (localCSV ? fileCSVTotal : urlCSVTotal),
+  4: (localCSV ? fileCSVTotal : urlCSVTotal),
+  5: (localCSV ? fileCSVGPS : urlCSVGPS),
+  6: (localCSV ? fileCSVGPSCities : urlCSVGPSCities),
+};
