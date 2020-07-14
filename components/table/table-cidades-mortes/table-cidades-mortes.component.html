@@ -14,14 +14,29 @@
 						<td mat-cell *matCellDef="let row"> {{row.Tcity}} </td>
 					</ng-container>
 
-					<ng-container matColumnDef="Tdeaths">
-						<th mat-header-cell *matHeaderCellDef mat-sort-header> Mortes </th>
-						<td mat-cell *matCellDef="let row"> {{row.Tdeaths | number:'':'pt-BR'}} </td>
+					<ng-container matColumnDef="Tdate">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+						<td mat-cell *matCellDef="let row"> {{row.Tdate}} </td>
 					</ng-container>
 
 					<ng-container matColumnDef="TtotalCases">
 						<th mat-header-cell *matHeaderCellDef mat-sort-header> Total de Casos </th>
 						<td mat-cell *matCellDef="let row"> {{row.TtotalCases | number:'':'pt-BR'}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="Tdeaths">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Mortes </th>
+						<td mat-cell *matCellDef="let row"> {{row.Tdeaths | number:'':'pt-BR'}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="TnewCases">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Novos Casos </th>
+						<td mat-cell *matCellDef="let row"> {{row.TnewCases | number:'':'pt-BR'}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="TnewDeaths">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Novas Mortes </th>
+						<td mat-cell *matCellDef="let row"> {{row.TnewDeaths | number:'':'pt-BR'}} </td>
 					</ng-container>
 
 					<tr mat-header-row *matHeaderRowDef="colunasTotal"></tr>

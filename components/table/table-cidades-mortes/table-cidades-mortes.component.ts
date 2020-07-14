@@ -14,9 +14,12 @@ import * as Papa from "papaparse";
 })
 export class TableCidadesMortesComponent implements OnInit {
   colunasTotal: string[] = [
+    "Tdate",
     "Tcity",
+    "TtotalCases",
     "Tdeaths",
-    "TtotalCases"
+    "TnewCases",
+    "TnewDeaths"
   ];
 
   length = 10;
@@ -56,11 +59,15 @@ export class TableCidadesMortesComponent implements OnInit {
 
   private setTabelaTotal(dados) {
     const source: any[] = [];
+
     for (var key = 1; key < dados.length-1; key++) {
       let data: any = {
+        Tdate: dados[key][12],
         Tcity: dados[key][2],
-        Tdeaths: dados[key][4],
-        TtotalCases: dados[key][5]
+        Tdeaths: dados[key][6],
+        TtotalCases: dados[key][7],
+        TnewCases: dados[key][13],
+        TnewDeaths: dados[key][14]
       };
       source.push(data);
     }

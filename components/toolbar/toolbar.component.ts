@@ -49,7 +49,7 @@ export class ToolBarComponent {
     this.coronaService.loadCSV2(2).subscribe((data: any[]) => {
       Papa.parse(data, {
         complete: parsedData => {
-          this.total.date = parsedData.data.reverse()[1][0];
+          this.total.date = parsedData.data.reverse()[1][1];
         }
       });
     });
