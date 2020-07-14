@@ -1,11 +1,11 @@
 <td-layout [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
 	[sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '240px' : '100%'" [class]="activeTheme">
-	<td-navigation-drawer logo="assets:covid" #sidenav flex [sidenavTitle]="name">
-		<mat-nav-list>
+	<!-- <td-navigation-drawer logo="assets:covid" #sidenav flex sidenavTitle="Covid-19" opened="true"> -->
+		<!-- <mat-nav-list>
 			<a *ngFor="let item of routes" mat-list-item routerLink="{{item.path}}" (click)="sidenav.toggle()">
 				<mat-icon>{{item.icon}}</mat-icon>{{item.label}}
 			</a>
-		</mat-nav-list>
+		</mat-nav-list> -->
 		<!-- <div td-navigation-drawer-menu>
 			<mat-nav-list>
 				<a *ngFor="let item of usermenu" mat-list-item>
@@ -13,21 +13,31 @@
 				</a>
 			</mat-nav-list>
 		</div> -->
-	</td-navigation-drawer>
-	<td-layout-nav [toolbarTitle]="name" navigationRoute="/">
-		<button mat-icon-button td-menu-button tdLayoutToggle>
-      <mat-icon svgIcon="assets:brasil"></mat-icon>
-    </button>
-		<div td-toolbar-content layout="row" layout-align="end" flex>
-			<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
+	<!-- </td-navigation-drawer> -->
+	<td-layout-nav navigationRoute="/">
+		<div td-toolbar-content layout="row" layout-align="space-around" flex>
+			<a *ngFor="let item of routes" mat-button mat-fab color="primary" routerLink="{{item.path}}">
+				<mat-icon matTooltip={{item.label}}>{{item.icon}}</mat-icon>
+			</a>
+			<button mat-button mat-fab color="primary" matTooltip="Trocar o tema da página"  *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
               <mat-icon>brightness_high</mat-icon>
               <!-- <span>Modo Claro</span> -->
         </button>
-			<button mat-icon-button matTooltip="Trocar o tema da página"  *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
+			<button mat-button mat-fab color="primary" matTooltip="Trocar o tema da página"  *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
               <mat-icon>brightness_low</mat-icon>
               <!-- <span>Modo Escuro</span> -->
         </button>
 		</div>
+		<!-- <div td-toolbar-content layout="row" layout-align="end" flex>
+
+		</div> -->
+
+    <div layout="row" layout-align="space-around">
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon svgIcon="assets:brasil"></mat-icon>
+      </button>
+      <h6 style="color: indigo;">Dados sobre a Covid-19 no Brasil</h6>
+    </div>
 
 		<!-- números do Covid -->
 		<crc-toolbar></crc-toolbar>

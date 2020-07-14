@@ -14,7 +14,6 @@ import * as Papa from "papaparse";
 })
 export class TableCidadesMortesComponent implements OnInit {
   colunasTotal: string[] = [
-    "Tdate",
     "Tcity",
     "TtotalCases",
     "Tdeaths",
@@ -59,10 +58,9 @@ export class TableCidadesMortesComponent implements OnInit {
 
   private setTabelaTotal(dados) {
     const source: any[] = [];
-
+    
     for (var key = 1; key < dados.length-1; key++) {
       let data: any = {
-        Tdate: dados[key][12],
         Tcity: dados[key][2],
         Tdeaths: dados[key][6],
         TtotalCases: dados[key][7],

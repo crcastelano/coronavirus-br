@@ -39,6 +39,17 @@
 						<td mat-cell *matCellDef="let row"> {{row.totalCases | number:'':'pt-BR'}} </td>
 					</ng-container>
 
+					<!-- Novas Mortes Column -->
+					<ng-container matColumnDef="newDeaths">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Novas Mortes </th>
+						<td mat-cell *matCellDef="let row"> {{row.newDeaths | number:'':'pt-BR'}} </td>
+					</ng-container>
+
+					<!-- Total de Mortes Column -->
+					<ng-container matColumnDef="deaths">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Total de Mortes </th>
+						<td mat-cell *matCellDef="let row"> {{row.deaths | number:'':'pt-BR'}} </td>
+					</ng-container>
 					<tr mat-header-row *matHeaderRowDef="colunasDiarios"></tr>
 					<tr mat-row *matRowDef="let row; columns: colunasDiarios;">
 					</tr>

@@ -17,7 +17,9 @@ export class TableCidadesNovosComponent {
     "date",
     "city",
     "newCases",
-    "totalCases"
+    "totalCases",
+    "newDeaths",
+    "deaths"
   ];
 
   length = 10;
@@ -53,11 +55,12 @@ export class TableCidadesNovosComponent {
     let source: any[] = [];
     for (var key = 1; key < dados.length-1; key++) {
       let data: any = {
-        date: dados[key][0],
-        state: dados[key][2],
-        city: dados[key][3],
-        newCases: dados[key][5],
-        totalCases: dados[key][6]
+        date: dados[key][1],
+        city: dados[key][4],
+        newCases: dados[key][10],
+        totalCases: dados[key][11],
+        newDeaths: dados[key][8],
+        deaths: dados[key][9],
       };
       source.push(data);
     }
