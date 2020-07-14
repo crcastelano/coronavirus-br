@@ -144,26 +144,26 @@ export class LineChartComponent {
 
   private setChartAvanco(ApiDados) {
     let dados = ApiDados.filter(function(item) {
-      return item[2] === "TOTAL";
+      return item[4] === "TOTAL";
     });
 
     const labels = dados.map(function(d) {
-      return formatDate(d[0], "dd/MM/yyyy", "pt");
+      return formatDate(d[1], "dd/MM/yyyy", "pt");
     });
 
     const serie1Label = "Novos Casos";
     const serie1Data = dados.map(function(d) {
-      return d[6];
+      return d[7];
     });
 
     const serie2Label = "Mortes";
     const serie2Data = dados.map(function(d) {
-      return d[5];
+      return d[4];
     });
 
     const serie3Label = "Total de Casos";
     const serie3Data = dados.map(function(d) {
-      return d[7];
+      return d[10];
     });
 
     let datasets = {
@@ -172,22 +172,22 @@ export class LineChartComponent {
         {
           label: serie1Label,
           data: serie1Data,
-          fill: true,
-          color: "red",
+          fill: false,
+          // color: "red",
           borderColor: "#2196F3"
         },
         {
           label: serie2Label,
           data: serie2Data,
-          fill: true,
+          fill: false,
           borderColor: "#d32f2f"
         },
-        {
-          label: serie3Label,
-          data: serie3Data,
-          fill: true,
-          borderColor: "#9d46ff"
-        }
+        // {
+        //   label: serie3Label,
+        //   data: serie3Data,
+        //   fill: true,
+        //   borderColor: "#9d46ff"
+        // }
       ]
     };
     this.chartAvanco.push(JSON.stringify(datasets));
